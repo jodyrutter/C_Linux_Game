@@ -1,0 +1,37 @@
+There is a dim light somewhere down this tunnel.
+Dragon
+Fire
+As you continue down the tunnel, you enter a chamber with flowing magma. Suddenly, from within a pool of magma, a dragon erupts, towering over you.
+               \||/
+                |  @___oo
+      /\  /\   / (__,,,,|
+     ) /^\) ^\/ _)
+     )   /^\/   _)
+     )   _ /  / _)
+ /\  )/\/ ||  | )_)
+<  >      |(,,) )__)
+ ||      /    \)___)\
+ | \____(      )___) )___
+  \______(_______;;; __;;;
+next
+A woman’s voice can be heard coming from this tunnel. Her voice is beautiful!
+Siren
+Water
+As you go down the tunnel, the woman’s voice gets louder and suddenly you see her. She is half submerged in a water pool. She looks pretty, so you go up to talk to her. Suddenly, she gets a very mean look on her face and shouts ‘WHY ARE YOU HERE!!!!
+				  ____
+				  / ,--\
+				 / (' a(
+			   ,'   \__/
+			  /   __/(_
+			  \  (  - -\
+			 ._)_| |_)_)\
+		  __..---|(  /  \\
+	_,--``       ||_/    \\__
+  ,'  ___________||_/     '--\
+ /  ,'   ___    _||
+ | (___,' ,-\  /,-/
+ \       /
+  \  `--<_
+   `.____ \
+		 )/
+next

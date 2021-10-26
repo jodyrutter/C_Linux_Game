@@ -10,9 +10,10 @@ typedef struct enemy_struct{
 
 
 
+
+int PopulateEnemies(enemy enemies[], int max_size);
 void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamage);
 void GetUserPathChoise(int *pathChoise);
-void PopulateEnemies(enemy enemies[]);
 int SetDifficulty(int userDif);
 int GetRandomNum(int numUpTo, int startAtNum);
 void PrintPath(int firstPath);
