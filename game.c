@@ -86,9 +86,9 @@ void PrintPath4(){
 }
 void GameOver(int lives, int playerHealth) {
     while (lives > 0) {
-        if (playerHealth >= 0) {
+        if (playerHealth <= 0) {
             lives = lives - 1;
-            if (lives >= 0) {
+            if (lives <= 0) {
                 printf("Game Over");
             }
         }
