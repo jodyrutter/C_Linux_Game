@@ -82,13 +82,13 @@ void PrintPath(int path)
   if (path==1){
     PrintPath1();
   }
-  if (path==2){
+  else if (path==2){
     PrintPath2();
   }
-  if (path==3){
+  else if (path==3){
     PrintPath3();
   }
-  if (path==4){
+  else{
     PrintPath4();
   }
 }
