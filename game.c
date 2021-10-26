@@ -9,6 +9,28 @@ void PrintPath1();
 void PrintPath2();
 void PrintPath3();
 void PrintPath4();
+int SetDifficulty(int userDif);
+
+
+
+void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamage){
+  printf("Hello adventurer, what is your name?\n");
+  scanf("%s", userName);
+  // strcpy(name, "Elenie"); //for testing only
+  printf("\nNice to meet you %s.\nYou have been called here to explore these vast catacombs in search of great treasure and riches.\n\n", userName);
+  printf("What difficulty would you like?\n");
+  printf("--------------------------\n");
+  printf("1. Beginner\n2. Intermediate\n3. Advanced\n");
+  printf("--------------------------\n");
+  printf("Type 1, 2, or 3: ");
+  scanf("%d", userDifficulty);
+  // difficulty=1; //for testing only
+  printf("\n");
+  //Print difficulty, Set damage taken by monster based on level
+  *monsterDamage=SetDifficulty(* userDifficulty);
+  printf("Monster Damage per hit is: %d\n", * monsterDamage);
+  printf("\n");
+}
 
 
 //set level difficulty and damage taken by monsters
@@ -85,3 +107,5 @@ void PrintPath3(){
 void PrintPath4(){
   printf("FIX ME -- CREATE PATH");
 }
+
+
