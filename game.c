@@ -9,23 +9,53 @@ void PrintPath1();
 void PrintPath2();
 void PrintPath3();
 void PrintPath4();
+int SetDifficulty(int userDif);
+
+
+
+void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamage){
+  printf("Hello adventurer, what is your name?\n");
+  scanf("%s", userName);
+  // strcpy(name, "Elenie"); //for testing only
+  printf("\nNice to meet you %s.\nYou have been called here to explore these vast catacombs in search of great treasure and riches.\n\n", userName);
+  printf("What difficulty would you like?\n");
+  printf("--------------------------\n");
+  printf("1. Beginner\n2. Intermediate\n3. Advanced\n");
+  printf("--------------------------\n");
+  printf("Type 1, 2, or 3: ");
+  scanf("%d", userDifficulty);
+  // difficulty=1; //for testing only
+  printf("\n");
+  //Print difficulty, Set damage taken by monster based on level
+  *monsterDamage=SetDifficulty(* userDifficulty);
+  printf("Monster Damage per hit is: %d\n", * monsterDamage);
+  printf("\n");
+}
 
 
 //set level difficulty and damage taken by monsters
 //Beginner 20, Intermediate 30, Advanced 40
 int SetDifficulty(int userDif){
   int damage;
+  int basedamage = 20;
+  time_t t;
+  int seed = srand((unsigned) time(&t));
+//  Based off the defined user difficulty, pads damage output based off the difficulty and basedamage variable
+//  damage is range based generated randomly from rand/srand
     if (userDif==1){
       printf("You chose Beginner");
-      damage = 20;
+      //damage = rand() % (basedamage + 1 - 0) + 0; might be needed for testing
+      damage = GetRandomNum(basedamage, 0);
     }
     else if(userDif==2){
       printf("You chose Intermediate");
-      damage = 30;
+      //damage = rand() % (basedamage + 10 + 1 - 10) + basedamage - 10;
+      damage = GetRandomNum((basedamage + 10), 10);
     }
     else if(userDif==3){
       printf("You chose Advanced");
-      damage = 40;
+      //damage = rand() % (basedamage + 20 + 1 - 20) + basedamage - 20;
+      damage = GetRandomNum((basedamage + 20), 20);
     }
     else{
       printf("Not a valid choice. Please try again!!!");
@@ -35,18 +65,22 @@ int SetDifficulty(int userDif){
     printf("\n");
     return damage;
 }
-
+void GetUserPathChoise(int *pathChoise){
+  printf("Type 1, 2, or 3: ");
+  scanf("%d", pathChoise);
+}
 
 
 //GET RANDOM PATH
 void srand(unsigned int seed);
 
-int GetRandomPathNum(numOfPaths){
-  int myPathNum;
+int GetRandomNum(int numUpTo, int startAtNum){
+  int myRandomNum;
   time_t t;
   srand((unsigned) time(&t)); //unique seed
-  myPathNum = (rand() % 4)+1; //Get random numbers 1-4
-  return myPathNum;
+  myRandomNum = (rand() % numUpTo)+startAtNum; //ex. (rand() % 4)+1  - get numbers 1 to 4
+  //  Get random numbers 1-4
+  return myRandomNum;
 }
 
 
@@ -59,13 +93,13 @@ void PrintPath(int path)
   if (path==1){
     PrintPath1();
   }
-  if (path==2){
+  else if (path==2){
     PrintPath2();
   }
-  if (path==3){
+  else if (path==3){
     PrintPath3();
   }
-  if (path==4){
+  else{
     PrintPath4();
   }
 }
@@ -84,6 +118,7 @@ void PrintPath3(){
 void PrintPath4(){
   printf("FIX ME -- CREATE PATH");
 }
+
 /**
  * Function to populate an array of enemies with data from file.
  * 
