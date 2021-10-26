@@ -18,6 +18,7 @@ int main(void) {
   // int fourthPath;
   int numOfPaths=4;
   int userPathChoise;
+
    
 
   //STARTING GAME
@@ -39,7 +40,7 @@ int main(void) {
   printf("\n");
 
   //RANDOMLY SELECT ONE OF OUR 4 PATHS (4 DIFFERENT MONSTERS)
-  firstPath=GetRandomPathNum(numOfPaths);
+  firstPath=GetRandomNum(numOfPaths, 1);
   
   //Print instructions for 1st Path
   PrintPath(firstPath);
@@ -50,7 +51,6 @@ int main(void) {
   //create a function that passes in firstPath and userPathChoise and then gives
   //appropriate directions
   //create a function inside the above, in game.c that takes you to specific instructions based on path and userPathChoise
-
 
 
 

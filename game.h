@@ -7,6 +7,6 @@
 
 
 int SetDifficulty(int userDif);
-int GetRandomPathNum(int numOfPaths);
+int GetRandomNum(int numUpTo, int startAtNum);
 void PrintPath(int firstPath);
 #endif
