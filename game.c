@@ -118,8 +118,58 @@ void PrintPath3(){
 void PrintPath4(){
   printf("FIX ME -- CREATE PATH");
 }
+<<<<<<< Upstream, based on origin/main
+=======
+
+int DamageToMonsters(char damageType, enemy enemyType) {
+	int monsterDamage;
+	if (damageType == 'F' || damageType == 'W' || damageType == 'E' || damageType == 'A') {
+
+	if (damageType == 'F') {
+		if (enemyType.element == 'W') {
+			monsterDamage = 40;
+		}
+		else {
+			monsterDamage = 20;
+		}
+	}
+
+	if (damageType == 'W') {
+			if (enemyType.element == 'F') {
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+
+	if (damageType == 'E') {
+			if (enemyType.element == 'A') {
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+
+	if (damageType == 'A') {
+			if (enemyType.element == 'E') {
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+	}
+	else {
+		printf("Need to enter a valid attack type like Fire(F), Water(W), Earth(E) or Air(A)!");
+	}
+
+}
+>>>>>>> f558ec8 Added and fixed damage to monsters, dynamic to type now
 
 
+<<<<<<< Upstream, based on origin/main
 void GameOver(int lives, int playerHealth) { //Function to determine Game Over
     while (lives > 0) {
         if (playerHealth <= 0) {
@@ -213,4 +263,11 @@ void GetUserAttackElementChoise(int *elementChoise){
 
 }
  
+=======
+
+
+
+
+
+>>>>>>> f558ec8 Added and fixed damage to monsters, dynamic to type now
 
