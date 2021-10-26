@@ -119,6 +119,59 @@ void PrintPath4(){
   printf("FIX ME -- CREATE PATH");
 }
 
+int DamageToMonsters(char damageType, enemy enemyType) {
+	/*
+	 * Simple damage function that looks like struct enemy element and then assigns damage accordingly
+	 * currently set to be static can be converted to dynamic depending on difficulty etc...
+	*/
+	int monsterDamage;
+	if (damageType == 'F' || damageType == 'W' || damageType == 'E' || damageType == 'A') {
+
+	if (damageType == 'F') {
+		if (enemyType.element == 'W') {
+			monsterDamage = 40;
+		}
+		else {
+			monsterDamage = 20;
+		}
+	}
+
+	if (damageType == 'W') {
+			if (enemyType.element == 'F') {
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+
+	if (damageType == 'E') {
+			if (enemyType.element == 'A') {
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+
+	if (damageType == 'A') {
+			if (enemyType.element == 'E') {
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+	}
+	else {
+		printf("Need to enter a valid attack type like Fire(F), Water(W), Earth(E) or Air(A)!");
+	}
+
+	return monsterDamage;
+
+
+
+}
 
 void GameOver(int lives, int playerHealth) { //Function to determine Game Over
     while (lives > 0) {
@@ -213,6 +266,5 @@ void GetUserAttackElementChoise(int *elementChoise){
   }
       printf("\n");
       printf("element choise: %d", *elementChoise);
-
 
 }
