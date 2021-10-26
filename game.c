@@ -57,7 +57,10 @@ int SetDifficulty(int userDif){
     printf("\n");
     return damage;
 }
-
+void GetUserPathChoise(int *pathChoise){
+  printf("Type 1, 2, or 3: ");
+  scanf("%d", pathChoise);
+}
 
 
 //GET RANDOM PATH
