@@ -47,6 +47,10 @@ int main(void) {
   printf("Type 1, 2, or 3: ");
   scanf("%d", &userPathChoise);
 
+  //create a function that passes in firstPath and userPathChoise and then gives
+  //appropriate directions
+  //create a function inside the above, in game.c that takes you to specific instructions based on path and userPathChoise
+
 
 
 

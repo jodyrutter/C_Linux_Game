@@ -45,7 +45,7 @@ int GetRandomPathNum(numOfPaths){
   int myPathNum;
   time_t t;
   srand((unsigned) time(&t)); //unique seed
-  myPathNum = (rand() % 4)+1; //Get random numbers 1-4
+  myPathNum = (rand() % numOfPaths)+1; //Get random numbers 1-4
   return myPathNum;
 }
 
