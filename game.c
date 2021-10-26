@@ -128,7 +128,7 @@ int DamageToMonsters(char damageType, enemy enemyType) {
 	if (damageType == 'F' || damageType == 'W' || damageType == 'E' || damageType == 'A') {
 
 	if (damageType == 'F') {
-		if (enemyType.element == 'W') {
+		if (*enemyType.element == 'W') {
 			monsterDamage = 40;
 		}
 		else {
@@ -137,7 +137,7 @@ int DamageToMonsters(char damageType, enemy enemyType) {
 	}
 
 	if (damageType == 'W') {
-			if (enemyType.element == 'F') {
+			if (*enemyType.element == 'F') {
 				monsterDamage = 40;
 			}
 			else {
@@ -146,7 +146,7 @@ int DamageToMonsters(char damageType, enemy enemyType) {
 		}
 
 	if (damageType == 'E') {
-			if (enemyType.element == 'A') {
+			if (*enemyType.element == 'A') {
 				monsterDamage = 40;
 			}
 			else {
@@ -155,7 +155,7 @@ int DamageToMonsters(char damageType, enemy enemyType) {
 		}
 
 	if (damageType == 'A') {
-			if (enemyType.element == 'E') {
+			if (*enemyType.element == 'E') {
 				monsterDamage = 40;
 			}
 			else {
