@@ -118,8 +118,57 @@ void PrintPath3(){
 void PrintPath4(){
   printf("FIX ME -- CREATE PATH");
 }
-<<<<<<< HEAD
-=======
+
+int DamageToMonsters(char damageType, enemy enemyType) {
+	int monsterDamage;
+	if (damageType == 'F' || damageType == 'W' || damageType == 'E' || damageType == 'A') {
+
+	if (damageType == 'F') {
+		if (enemyType.element == 'W') {
+			monsterDamage = 40;
+		}
+		else {
+			monsterDamage = 20;
+		}
+	}
+
+	if (damageType == 'W') {
+			if (enemyType.element == 'F') {
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+
+	if (damageType == 'E') {
+			if (enemyType.element == 'A') {
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+
+	if (damageType == 'A') {
+			if (enemyType.element == 'E') {
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+	}
+	else {
+		printf("Need to enter a valid attack type like Fire(F), Water(W), Earth(E) or Air(A)!");
+	}
+
+}
 
 
->>>>>>> refs/remotes/origin/main
+
+
+
+
+
+
