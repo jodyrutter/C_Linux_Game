@@ -21,6 +21,7 @@ int main(void) {
   // int fourthPath;
   int numOfPaths=4;
   int userPathChoise;
+  int userElementChoise;
 
 
 
@@ -35,6 +36,13 @@ int main(void) {
 
   GetUserPathChoise(&userPathChoise);
 
+  //display instructions based on user Path Choise. 
+  //for ex. if 1. Left is a dim, 2. Center - A loud roar, 3. Right there is only quietness
+  //if user chose 1, the function will give info from Left is a dim.. etc.
+  FirstPath(userPathChoise);
+
+  PrintAttackElements();
+  GetUserAttackElementChoise(&userElementChoise);
 
   //create a function that passes in firstPath and userPathChoise and then gives
   //appropriate directions
