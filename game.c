@@ -89,7 +89,7 @@ void GameOver(int lives, int playerHealth) {
         if (playerHealth >= 0) {
             lives = lives - 1;
             if (lives >= 0) {
-                printf("GameOver");
+                printf("Game Over");
             }
         }
     }
