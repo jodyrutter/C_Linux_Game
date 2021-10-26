@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <ctype.h>
 #include "game.h"
 
 //predefine functions
@@ -10,13 +11,14 @@ void PrintPath2();
 void PrintPath3();
 void PrintPath4();
 int SetDifficulty(int userDif);
+void GetUserInputDigit(int* myNum);
 
 
 
 void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamage){
   printf("Hello adventurer, what is your name?\n");
-  scanf("%s", userName);
-  // strcpy(name, "Elenie"); //for testing only
+  // scanf("%s", userName);
+  strcpy(userName, "Elenie"); //for testing only
   printf("\nNice to meet you %s.\nYou have been called here to explore these vast catacombs in search of great treasure and riches.\n\n", userName);
   printf("What difficulty would you like?\n");
   printf("--------------------------\n");
@@ -24,7 +26,7 @@ void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamag
   printf("--------------------------\n");
   printf("Type 1, 2, or 3: ");
   scanf("%d", userDifficulty);
-  // difficulty=1; //for testing only
+  // userDifficulty=1; //for testing only
   printf("\n");
   //Print difficulty, Set damage taken by monster based on level
   *monsterDamage=SetDifficulty(* userDifficulty);
@@ -38,8 +40,6 @@ void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamag
 int SetDifficulty(int userDif){
   int damage;
   int basedamage = 20;
-  time_t t;
-  int seed = srand((unsigned) time(&t));
 //  Based off the defined user difficulty, pads damage output based off the difficulty and basedamage variable
 //  damage is range based generated randomly from rand/srand
     if (userDif==1){
@@ -113,23 +113,23 @@ void PrintPath2(){
   printf("1. Left - This tunnel sounds very windy.\n2. Center - There is a dim light somewhere down this tunnel.\n3. Right - A woman's voice can be heard coming from this tunnel. Her voice is beautiful\n\n");
 }
 void PrintPath3(){
-  printf("1. Left - You hear rocks falling down this tunnel.\n2. Center - There is the sound of rushing water coming from this tunnel.\n3. Right - There is a dim light somewhere down this tunner.\n\n");
+  printf("1. Left - You hear rocks falling down this tunnel.\n2. Center - There is the sound of rushing water coming from this tunnel.\n3. Right - There is a dim light somewhere down this tunnel.\n\n");
 }
 void PrintPath4(){
   printf("FIX ME -- CREATE PATH");
 }
 
-int DamageToMonsters(char damageType, enemy enemyType) {
+int DamageToMonsters(int damageType, enemy enemyType) {
 	/*
-	 * Simple monster damage function that looks at the struct monsters element type
-	 * if the type is susceptible to the damage type chosen it does bonus damage else basic damage
-	 * Currently damage types are static, might make dynamic depending on the difficulty etc...
+	 * Simple damage function that looks like struct enemy element and then assigns damage accordingly
+	 * currently set to be static can be converted to dynamic depending on difficulty etc...
 	*/
 	int monsterDamage;
-	if (damageType == 'F' || damageType == 'W' || damageType == 'E' || damageType == 'A') {
 
-	if (damageType == 'F') {
-		if (enemyType.element == 'W') {
+	if (damageType == 1 || damageType == 2 || damageType == 3 || damageType == 4) {
+
+	if (damageType == 1) {
+		if (*enemyType.element == 'W') {
 			monsterDamage = 40;
 		}
 		else {
@@ -137,8 +137,8 @@ int DamageToMonsters(char damageType, enemy enemyType) {
 		}
 	}
 
-	if (damageType == 'W') {
-			if (enemyType.element == 'F') {
+	if (damageType == 2) {
+			if (*enemyType.element == 'F') {
 				monsterDamage = 40;
 			}
 			else {
@@ -146,8 +146,8 @@ int DamageToMonsters(char damageType, enemy enemyType) {
 			}
 		}
 
-	if (damageType == 'E') {
-			if (enemyType.element == 'A') {
+	if (damageType == 3) {
+			if (*enemyType.element == 'A') {
 				monsterDamage = 40;
 			}
 			else {
@@ -155,8 +155,8 @@ int DamageToMonsters(char damageType, enemy enemyType) {
 			}
 		}
 
-	if (damageType == 'A') {
-			if (enemyType.element == 'E') {
+	if (damageType == 4) {
+			if (*enemyType.element == 'E') {
 				monsterDamage = 40;
 			}
 			else {
@@ -168,12 +168,22 @@ int DamageToMonsters(char damageType, enemy enemyType) {
 		printf("Need to enter a valid attack type like Fire(F), Water(W), Earth(E) or Air(A)!");
 	}
 
+	return monsterDamage;
+
+
+
 }
 
-
-
-
-
+void GameOver(int lives, int playerHealth) { //Function to determine Game Over
+    while (lives > 0) {
+        if (playerHealth <= 0) {
+            lives = lives - 1; //Decrement lives from game
+            if (lives <= 0) {
+                printf("Game Over");
+            }
+        }
+     }
+}
 
 
 
@@ -218,3 +228,46 @@ int PopulateEnemies(enemy enemies[], int max_size){
 	fclose(fptr);
     return i;
 }
+
+
+
+void FirstPath(int pathChoise){
+  if (pathChoise == 1){
+    printf("You have chosen Left");
+  }
+  else if(pathChoise == 2){
+    printf("You have chosen Center");
+  }
+  else if(pathChoise ==3){
+    printf("You have chosen Right");
+  }
+}
+
+
+void PrintAttackElements(){
+  printf("Choose which element to attack with:\n");
+  printf("--------------------------\n");
+  printf("1. Fire\n2. Water\n3. Earth\n4. Air\n");
+  printf("--------------------------\n");
+  printf("Type 1, 2, 3, or 4: ");
+}
+
+
+void GetUserAttackElementChoise(int *elementChoise){
+  int elementNum=4;
+  printf("\n");
+
+  scanf("%d", elementChoise);
+  
+  while ( *elementChoise >elementNum || *elementChoise <1){
+        printf("******ERROR*****\n");
+        printf("You have selected %d which is out of range, please select an attack item between 1 and 4\n", *elementChoise);
+        PrintAttackElements();
+        scanf("%d", elementChoise);
+        printf("\n");
+  }
+      printf("\n");
+      printf("element choise: %d", *elementChoise);
+
+}
+
