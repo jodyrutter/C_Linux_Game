@@ -15,17 +15,25 @@ void PrintPath4();
 //Beginner 20, Intermediate 30, Advanced 40
 int SetDifficulty(int userDif){
   int damage;
+  int basedamage = 20;
+  time_t t;
+  int seed = srand((unsigned) time(&t));
+//  Based off the defined user difficulty, pads damage output based off the difficulty and basedamage variable
+//  damage is range based generated randomly from rand/srand
     if (userDif==1){
       printf("You chose Beginner");
-      damage = 20;
+      //damage = rand() % (basedamage + 1 - 0) + 0; might be needed for testing
+      damage = GetRandomNum(basedamage, 0);
     }
     else if(userDif==2){
       printf("You chose Intermediate");
-      damage = 30;
+      //damage = rand() % (basedamage + 10 + 1 - 10) + basedamage - 10;
+      damage = GetRandomNum((basedamage + 10), 10);
     }
     else if(userDif==3){
       printf("You chose Advanced");
-      damage = 40;
+      //damage = rand() % (basedamage + 20 + 1 - 20) + basedamage - 20;
+      damage = GetRandomNum((basedamage + 20), 20);
     }
     else{
       printf("Not a valid choice. Please try again!!!");
