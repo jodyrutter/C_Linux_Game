@@ -11,7 +11,7 @@ typedef struct enemy_struct{
 
 
 
-void PopulateEnemies(enemy enemies[]);
+int PopulateEnemies(enemy enemies[], int max_size);
 int SetDifficulty(int userDif);
 int GetRandomPathNum(int numOfPaths);
 void PrintPath(int firstPath);

@@ -6,6 +6,9 @@
 
 
 int main(void) {
+  int max_size = 200;
+  enemy enemies[max_size];
+  PopulateEnemies(enemies, max_size);
   char name[30];
   int difficulty;
   int monsterDamagePerHit;
