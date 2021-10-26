@@ -129,7 +129,7 @@ int DamageToMonsters(int damageType, enemy enemyType) {
 	if (damageType == 1 || damageType == 2 || damageType == 3 || damageType == 4) {
 
 	if (damageType == 1) {
-		if (*enemyType.element == 'W') {
+		if (strcmp(enemyType.element, "Water")) {
 			monsterDamage = 40;
 		}
 		else {
@@ -138,7 +138,7 @@ int DamageToMonsters(int damageType, enemy enemyType) {
 	}
 
 	if (damageType == 2) {
-			if (*enemyType.element == 'F') {
+			if (strcmp(enemyType.element, "Fire")) {
 				monsterDamage = 40;
 			}
 			else {
@@ -147,7 +147,7 @@ int DamageToMonsters(int damageType, enemy enemyType) {
 		}
 
 	if (damageType == 3) {
-			if (*enemyType.element == 'A') {
+			if (strcmp(enemyType.element, "Air")) {
 				monsterDamage = 40;
 			}
 			else {
@@ -156,7 +156,7 @@ int DamageToMonsters(int damageType, enemy enemyType) {
 		}
 
 	if (damageType == 4) {
-			if (*enemyType.element == 'E') {
+			if (strcmp(enemyType.element, "Earth")) {
 				monsterDamage = 40;
 			}
 			else {
