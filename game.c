@@ -55,7 +55,7 @@ int GetRandomPathNum(numOfPaths){
 void PrintPath(int path)
 {
   printf("To start, pick a path\n");
-  printf("Type 1, 2, or 3\n\n");
+  
   if (path==1){
     PrintPath1();
   }

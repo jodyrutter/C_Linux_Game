@@ -17,6 +17,7 @@ int main(void) {
   // int thirdPath;
   // int fourthPath;
   int numOfPaths=4;
+  int userPathChoise;
    
 
   //STARTING GAME
@@ -25,10 +26,10 @@ int main(void) {
   // strcpy(name, "Elenie"); //for testing only
   printf("\nNice to meet you %s.\nYou have been called here to explore these vast catacombs in search of great treasure and riches.\n\n", name);
   printf("What difficulty would you like?\n");
-  printf("Type 1, 2, or 3\n");
   printf("--------------------------\n");
   printf("1. Beginner\n2. Intermediate\n3. Advanced\n");
   printf("--------------------------\n");
+  printf("Type 1, 2, or 3: ");
   scanf("%d", &difficulty);
   // difficulty=1; //for testing only
   printf("\n");
@@ -42,6 +43,9 @@ int main(void) {
   
   //Print instructions for 1st Path
   PrintPath(firstPath);
+
+  printf("Type 1, 2, or 3: ");
+  scanf("%d", &userPathChoise);
 
 
 
