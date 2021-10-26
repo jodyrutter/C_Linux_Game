@@ -125,10 +125,12 @@ void GameOver(int lives, int playerHealth) { //Function to determine Game Over
         if (playerHealth <= 0) {
             lives = lives - 1; //Decrement lives from game
             if (lives <= 0) {
-                printf("Game Over")
+                printf("Game Over");
             }
         }
-    }
+     }
+}
+
 
 
 /**
@@ -170,6 +172,7 @@ int PopulateEnemies(enemy enemies[], int max_size){
 	}
 	fclose(fptr);
     return i;
+}
 
 
 
@@ -207,10 +210,9 @@ void GetUserAttackElementChoise(int *elementChoise){
         PrintAttackElements();
         scanf("%d", elementChoise);
         printf("\n");
-      }
+  }
       printf("\n");
       printf("element choise: %d", *elementChoise);
 
-}
- 
 
+}
