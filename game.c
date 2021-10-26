@@ -84,3 +84,13 @@ void PrintPath3(){
 void PrintPath4(){
   printf("FIX ME -- CREATE PATH");
 }
+void GameOver(int lives, int playerHealth) {
+    while (lives > 0) {
+        if (playerHealth <= 0) {
+            lives = lives - 1;
+            if (lives <= 0) {
+                printf("Game Over");
+            }
+        }
+    }
+}
