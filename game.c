@@ -120,6 +120,10 @@ void PrintPath4(){
 }
 
 int DamageToMonsters(char damageType, enemy enemyType) {
+	/*
+	 * Simple damage function that looks like struct enemy element and then assigns damage accordingly
+	 * currently set to be static can be converted to dynamic depending on difficulty etc...
+	*/
 	int monsterDamage;
 	if (damageType == 'F' || damageType == 'W' || damageType == 'E' || damageType == 'A') {
 
@@ -162,6 +166,10 @@ int DamageToMonsters(char damageType, enemy enemyType) {
 	else {
 		printf("Need to enter a valid attack type like Fire(F), Water(W), Earth(E) or Air(A)!");
 	}
+
+	return monsterDamage;
+
+
 
 }
 
