@@ -30,8 +30,8 @@ int main(void) {
   //Print instructions for 1st Path
   PrintPath(firstPath);
 
-  printf("Type 1, 2, or 3: ");
-  scanf("%d", &userPathChoise);
+  GetUserPathChoise(&userPathChoise);
+
 
   //create a function that passes in firstPath and userPathChoise and then gives
   //appropriate directions
