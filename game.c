@@ -137,17 +137,21 @@ int DamageToMonsters(int damageType, enemy enemyType) {
 		}
 	}
 
+
 	if (damageType == 2) {
 			if (strcmp(enemyType.element, "Fire")) {
+
 				monsterDamage = 40;
 			}
 			else {
 				monsterDamage = 20;
 			}
 		}
+
 
 	if (damageType == 3) {
 			if (strcmp(enemyType.element, "Air")) {
+
 				monsterDamage = 40;
 			}
 			else {
@@ -155,8 +159,10 @@ int DamageToMonsters(int damageType, enemy enemyType) {
 			}
 		}
 
+
 	if (damageType == 4) {
 			if (strcmp(enemyType.element, "Earth")) {
+
 				monsterDamage = 40;
 			}
 			else {
