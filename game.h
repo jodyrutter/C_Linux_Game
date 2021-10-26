@@ -4,7 +4,8 @@ typedef struct enemy_struct{
 	char tunnelHint[100];
 	char name[50];
 	char element[50];
-	char startingPrompts[20][100];
+	char startingPrompt[999];
+	char asciiArt[50][200];
 } enemy;
 
 
