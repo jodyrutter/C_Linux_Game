@@ -118,8 +118,6 @@ void PrintPath3(){
 void PrintPath4(){
   printf("FIX ME -- CREATE PATH");
 }
-<<<<<<< Upstream, based on origin/main
-=======
 
 int DamageToMonsters(char damageType, enemy enemyType) {
 	int monsterDamage;
@@ -166,10 +164,7 @@ int DamageToMonsters(char damageType, enemy enemyType) {
 	}
 
 }
->>>>>>> f558ec8 Added and fixed damage to monsters, dynamic to type now
 
-
-<<<<<<< Upstream, based on origin/main
 void GameOver(int lives, int playerHealth) { //Function to determine Game Over
     while (lives > 0) {
         if (playerHealth <= 0) {
@@ -262,12 +257,4 @@ void GetUserAttackElementChoise(int *elementChoise){
       printf("element choise: %d", *elementChoise);
 
 }
- 
-=======
-
-
-
-
-
->>>>>>> f558ec8 Added and fixed damage to monsters, dynamic to type now
 
