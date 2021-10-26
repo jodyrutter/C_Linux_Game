@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <ctype.h>
 #include "game.h"
 
 //predefine functions
@@ -10,13 +11,14 @@ void PrintPath2();
 void PrintPath3();
 void PrintPath4();
 int SetDifficulty(int userDif);
+void GetUserInputDigit(int* myNum);
 
 
 
 void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamage){
   printf("Hello adventurer, what is your name?\n");
-  scanf("%s", userName);
-  // strcpy(name, "Elenie"); //for testing only
+  // scanf("%s", userName);
+  strcpy(userName, "Elenie"); //for testing only
   printf("\nNice to meet you %s.\nYou have been called here to explore these vast catacombs in search of great treasure and riches.\n\n", userName);
   printf("What difficulty would you like?\n");
   printf("--------------------------\n");
@@ -24,7 +26,7 @@ void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamag
   printf("--------------------------\n");
   printf("Type 1, 2, or 3: ");
   scanf("%d", userDifficulty);
-  // difficulty=1; //for testing only
+  // userDifficulty=1; //for testing only
   printf("\n");
   //Print difficulty, Set damage taken by monster based on level
   *monsterDamage=SetDifficulty(* userDifficulty);
@@ -38,8 +40,6 @@ void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamag
 int SetDifficulty(int userDif){
   int damage;
   int basedamage = 20;
-  time_t t;
-  int seed = srand((unsigned) time(&t));
 //  Based off the defined user difficulty, pads damage output based off the difficulty and basedamage variable
 //  damage is range based generated randomly from rand/srand
     if (userDif==1){
@@ -118,8 +118,46 @@ void PrintPath3(){
 void PrintPath4(){
   printf("FIX ME -- CREATE PATH");
 }
-<<<<<<< HEAD
-=======
 
 
->>>>>>> refs/remotes/origin/main
+
+void FirstPath(int pathChoise){
+  if (pathChoise == 1){
+    printf("You have chosen Left");
+  }
+  else if(pathChoise == 2){
+    printf("You have chosen Center");
+  }
+  else if(pathChoise ==3){
+    printf("You have chosen Right");
+  }
+}
+
+
+void PrintAttackElements(){
+  printf("Choose which element to attack with:\n");
+  printf("--------------------------\n");
+  printf("1. Fire\n2. Water\n3. Earth\n4. Air\n");
+  printf("--------------------------\n");
+  printf("Type 1, 2, 3, or 4: ");
+}
+
+
+void GetUserAttackElementChoise(int *elementChoise){
+  int elementNum=4;
+  printf("\n");
+
+  scanf("%d", elementChoise);
+  
+  while ( *elementChoise >elementNum || *elementChoise <1){
+        printf("******ERROR*****\n");
+        printf("You have selected %d which is out of range, please select an attack item between 1 and 4\n", *elementChoise);
+        PrintAttackElements();
+        scanf("%d", elementChoise);
+        printf("\n");
+      }
+      printf("\n");
+      printf("element choise: %d", *elementChoise);
+}
+ 
+
