@@ -65,9 +65,9 @@ int SetDifficulty(int userDif){
     printf("\n");
     return damage;
 }
-void GetUserPathChoise(int *pathChoise){
+void GetUserPathChoice(int *pathChoice){
   printf("Type 1, 2, or 3: ");
-  scanf("%d", pathChoise);
+  scanf("%d", pathChoice);
 }
 
 
@@ -119,6 +119,66 @@ void PrintPath4(){
   printf("FIX ME -- CREATE PATH");
 }
 
+int DamageToMonsters(int damageType, enemy enemyType) {
+	/*
+	 * Simple damage function that looks like struct enemy element and then assigns damage accordingly
+	 * currently set to be static can be converted to dynamic depending on difficulty etc...
+	*/
+	int monsterDamage;
+
+	if (damageType == 1 || damageType == 2 || damageType == 3 || damageType == 4) {
+
+	if (damageType == 1) {
+		if (strcmp(enemyType.element, "Water")) {
+			monsterDamage = 40;
+		}
+		else {
+			monsterDamage = 20;
+		}
+	}
+
+
+	if (damageType == 2) {
+			if (strcmp(enemyType.element, "Fire")) {
+
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+
+
+	if (damageType == 3) {
+			if (strcmp(enemyType.element, "Air")) {
+
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+
+
+	if (damageType == 4) {
+			if (strcmp(enemyType.element, "Earth")) {
+
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+	}
+	else {
+		printf("Need to enter a valid attack type like Fire(F), Water(W), Earth(E) or Air(A)!");
+	}
+
+	return monsterDamage;
+
+
+
+}
 
 void GameOver(int lives, int playerHealth) { //Function to determine Game Over
     while (lives > 0) {
@@ -128,7 +188,10 @@ void GameOver(int lives, int playerHealth) { //Function to determine Game Over
                 printf("Game Over");
             }
         }
-    }
+     }
+}
+
+
 
 
 /**
@@ -170,17 +233,18 @@ int PopulateEnemies(enemy enemies[], int max_size){
 	}
 	fclose(fptr);
     return i;
+}
 
 
 
-void FirstPath(int pathChoise){
-  if (pathChoise == 1){
+void FirstPath(int pathChoice){
+  if (pathChoice == 1){
     printf("You have chosen Left");
   }
-  else if(pathChoise == 2){
+  else if(pathChoice == 2){
     printf("You have chosen Center");
   }
-  else if(pathChoise ==3){
+  else if(pathChoice ==3){
     printf("You have chosen Right");
   }
 }
@@ -195,22 +259,21 @@ void PrintAttackElements(){
 }
 
 
-void GetUserAttackElementChoise(int *elementChoise){
+void GetUserAttackElementChoice(int *elementChoice){
   int elementNum=4;
   printf("\n");
 
-  scanf("%d", elementChoise);
+  scanf("%d", elementChoice);
   
-  while ( *elementChoise >elementNum || *elementChoise <1){
+  while ( *elementChoice >elementNum || *elementChoice <1){
         printf("******ERROR*****\n");
-        printf("You have selected %d which is out of range, please select an attack item between 1 and 4\n", *elementChoise);
+        printf("You have selected %d which is out of range, please select an attack item between 1 and 4\n", *elementChoice);
         PrintAttackElements();
-        scanf("%d", elementChoise);
+        scanf("%d", elementChoice);
         printf("\n");
-      }
+  }
       printf("\n");
-      printf("element choise: %d", *elementChoise);
+      printf("element choise: %d", *elementChoice);
 
 }
- 
 
