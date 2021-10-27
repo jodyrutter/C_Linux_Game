@@ -25,5 +25,5 @@ void GetUserAttackElementChoice(int* elementChoice);
 
 void GetAndPrintUserAttackElementChoise(int* elementChoise);
 
-int DamageToMonsters(int damageType, enemy enemyType);
+int DamageToMonsters(int damageType, enemy enemyType, int sword);
 #endif
