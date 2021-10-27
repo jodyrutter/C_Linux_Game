@@ -39,6 +39,7 @@ int main(void) {
   int usrSword, usrArmor = 0;
   int userPathChoice;
   int userElementChoice;
+  
   //Get user name, set difficulty, set monster Damage per hit
   GetIntroductionInfo(name, &difficulty, &monsterDamagePerHit);
   while(lives>0 && level < 10){
@@ -88,10 +89,10 @@ int main(void) {
 
 
   //PrintAttackElements();
-  //GetUserAttackElementChoice(&userElementChoice);
+  // GetUserAttackElementChoice(&userElementChoice);
   //DamageToMonsters(userElementChoice, enemies.element);
 
-  //GetAndPrintUserAttackElementChoice(&userElementChoice);
+  // GetAndPrintUserAttackElementChoice(&userElementChoice);
   // DamageToMonsters(userElementChoise, enemies.element);
 
 

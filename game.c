@@ -223,7 +223,6 @@ int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 	int monsterDamage;
 
 	if (damageType == 1 || damageType == 2 || damageType == 3 || damageType == 4) {
-
 	if (damageType == 1) {
 		if (strcmp(enemyType.element, "Water")) {
 			monsterDamage = 40;
@@ -234,7 +233,6 @@ int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 	}
 	else if (damageType == 2) {
 			if (strcmp(enemyType.element, "Fire")) {
-
 				monsterDamage = 40;
 			}
 			else {
@@ -243,7 +241,6 @@ int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 		}
 	else if (damageType == 3) {
 			if (strcmp(enemyType.element, "Air")) {
-
 				monsterDamage = 40;
 			}
 			else {
@@ -252,7 +249,6 @@ int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 		}
 	else {
 			if (strcmp(enemyType.element, "Earth")) {
-
 				monsterDamage = 40;
 			}
 			else {
@@ -263,14 +259,10 @@ int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 	else {
 		printf("Need to enter a valid attack type like Fire(F), Water(W), Earth(E) or Air(A)!");
 	}
-
 	if (sword == 1) {
 			monsterDamage += 10;
 		}
-		return monsterDamage;
-
 	return monsterDamage;
-
   }
 
 void GameOver(int lives, int playerHealth) { //Function to determine Game Over
@@ -330,18 +322,18 @@ int PopulateEnemies(enemy enemies[], int max_size){
 
 
 
-void FirstPath(int pathChoice){
-  if (pathChoice == 1){
-    printf("You have chosen Left");
-  }
-  else if(pathChoice == 2){
-    printf("You have chosen Center");
-  }
-  else if(pathChoice ==3){
-    printf("You have chosen Right");
-  }
-  printf("\n\n");
-}
+// void FirstPath(int pathChoice){
+//   if (pathChoice == 1){
+//     printf("You have chosen Left");
+//   }
+//   else if(pathChoice == 2){
+//     printf("You have chosen Center");
+//   }
+//   else if(pathChoice ==3){
+//     printf("You have chosen Right");
+//   }
+//   printf("\n\n");
+// }
 
 //function that prints Fire, Water,Earth, Air
 void PrintAttackElements(int min, int max){
@@ -361,16 +353,6 @@ void GetAndPrintUserAttackElementChoice(int *elementChoice){
 
 
   scanf("%d", elementChoice);
-  
-  while ( *elementChoice >elementNum || *elementChoice <1){
-        printf("******ERROR*****\n");
-        printf("You have selected %d which is out of range, please select an attack item between 1 and 4\n", *elementChoice);
-        //PrintAttackElements();
-        scanf("%d", elementChoice);
-        printf("\n");
-  }
-      printf("\n");
-      printf("element choice: %d", *elementChoice);
 
   PrintAttackElements(minNum, elementNum);
 
