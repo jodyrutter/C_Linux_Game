@@ -80,8 +80,6 @@ void srand(unsigned int seed);
 
 int GetRandomNum(int numUpTo, int startAtNum){
   int myRandomNum;
-  time_t t;
-  srand((unsigned) time(&t)); //unique seed
   myRandomNum = (rand() % numUpTo)+startAtNum; //ex. (rand() % 4)+1  - get numbers 1 to 4
   //  Get random numbers 1-4
   return myRandomNum;

@@ -25,23 +25,31 @@ int main(void) {
   int monster3;
   int fightWon = 1; //To comply with old c, 0 means false, 1 means true.
   time_t t;
+  srand((unsigned) time(&t)); //unique seed
   // int secondPath;
   // int thirdPath;
   // int fourthPath;
   int numOfPaths=4;
   int userPathChoise;
   int usrGold = 5;
+  int level = 0;
   int usrSword, usrArmor = 0;
   int userPathChoice;
   int userElementChoice;
   //Get user name, set difficulty, set monster Damage per hit
   GetIntroductionInfo(name, &difficulty, &monsterDamagePerHit);
-  while(lives>0){
+  while(lives>0 && level < 10){
 	  if(fightWon == 1){
 		srand(time(0));
-		monster1 = rand() % numEnemies;
-		monster2 = rand() % numEnemies;
-		monster3 = rand() % numEnemies;  
+		monster1 = GetRandomNum(numEnemies, 0);
+		monster2 = GetRandomNum(numEnemies, 0);
+		monster3 = GetRandomNum(numEnemies, 0);
+	  }
+	  if(level == 0){
+	      printf("You are at the start of the catacombs.\n");
+	  }
+	  else{
+	      printf("You are %d levels deep into the catacombs.\n", level);
 	  }
 	  //Print instructions for 1st Path
 	  PrintPath(monster1, monster2, monster3, enemies, numEnemies);
@@ -62,6 +70,9 @@ int main(void) {
 				GetUserPathChoice(&userPathChoise);
 			}
 	  }
+	  if(fightWon == 1){
+		level++;
+	  }
   }
 
 
@@ -71,11 +82,11 @@ int main(void) {
   //FirstPath(userPathChoice);
 
 
-  PrintAttackElements();
+  //PrintAttackElements();
   //GetUserAttackElementChoice(&userElementChoice);
   //DamageToMonsters(userElementChoice, enemies.element);
 
-  GetAndPrintUserAttackElementChoice(&userElementChoice);
+  //GetAndPrintUserAttackElementChoice(&userElementChoice);
   // DamageToMonsters(userElementChoise, enemies.element);
 
 
