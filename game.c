@@ -5,11 +5,12 @@
 #include <ctype.h>
 #include "game.h"
 
-int SetDifficulty(int userDif);
+void PrintDifficulty(int userDif);
 void GetValidateUserInputDigit(int* myInput, int lowerRange, int higherRange);
 int minDif=1; //min count for difficulty - starts at 1 - Beginner
 int maxDif=3; //max count for difficulty - ends at 1 - Advanced
 void PrintUserDigitOptions(int min, int max);
+int GetMonsterDamage(int difficulty);
 
 void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamage){
   printf("Hello adventurer, what is your name?\n");
@@ -25,43 +26,50 @@ void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamag
   // userDifficulty=1; //for testing only
   printf("\n");
   //Print difficulty, Set damage taken by monster based on level
-  *monsterDamage=SetDifficulty(* userDifficulty);
+  PrintDifficulty(* userDifficulty);
+  * monsterDamage=GetMonsterDamage(* userDifficulty);
   printf("Monster Damage per hit is: %d\n", * monsterDamage);
   printf("\n");
 }
 
-
-//set level difficulty and damage taken by monsters
-//Beginner 20, Intermediate 30, Advanced 40
-int SetDifficulty(int userDif){
-  int damage;
-  int basedamage = 20;
-  time_t t;
-//  Based off the defined user difficulty, pads damage output based off the difficulty and basedamage variable
+// Based off the defined user difficulty, pads damage output based off the difficulty and basedamage variable
 //  damage is range based generated randomly from rand/srand
-    if (userDif==1){
-      printf("You chose Beginner");
-      //damage = rand() % (basedamage + 1 - 0) + 0; might be needed for testing
-      damage = GetRandomNum(basedamage, 0);
-    }
-    else if(userDif==2){
-      printf("You chose Intermediate");
-      //damage = rand() % (basedamage + 10 + 1 - 10) + basedamage - 10;
-      damage = GetRandomNum((basedamage + 10), 10);
-    }
-    else if(userDif==3){
-      printf("You chose Advanced");
-      //damage = rand() % (basedamage + 20 + 1 - 20) + basedamage - 20;
-      damage = GetRandomNum((basedamage + 20), 20);
-    }
-    else{
-      printf("Not a valid choice. Please try again!!!");
-      return 0;
-      
-    }
-    printf("\n");
-    return damage;
+int GetMonsterDamage(int difficulty){
+  int damage;
+  int baseDamage=20;
+
+  //damage range 0-20
+  if (difficulty==1){
+    damage = GetRandomNum(baseDamage, 0);
+  }
+  //damage range 10-30
+  else if (difficulty==2){
+    damage = GetRandomNum(baseDamage, 10);
+  }
+  else{
+    //damage range 20-40
+    damage = GetRandomNum(baseDamage , 20);
+  }
+  printf("\n");
+  return damage;
 }
+
+//print level difficulty
+void PrintDifficulty(int userDif){
+  if (userDif==1){
+    printf("You Chose Beginner");
+  }
+  else if (userDif == 2){
+    printf("You Chose Intermediate");
+  }
+  else if (userDif == 3){
+    printf("You chose Advanced");
+  }
+  printf("\n");
+}
+
+
+
 
 void GetUserPathChoice(int *pathChoice){
   int minPathChoice=1;
@@ -162,7 +170,6 @@ int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 
 	if (damageType == 1 || damageType == 2 || damageType == 3 || damageType == 4) {
 
-
 	if (damageType == 1) {
 		if (strcmp(enemyType.element, "Water")) {
 			monsterDamage = 40;
@@ -171,9 +178,7 @@ int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 			monsterDamage = 20;
 		}
 	}
-
-
-	if (damageType == 2) {
+	else if (damageType == 2) {
 			if (strcmp(enemyType.element, "Fire")) {
 
 				monsterDamage = 40;
@@ -182,9 +187,7 @@ int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 				monsterDamage = 20;
 			}
 		}
-
-
-	if (damageType == 3) {
+	else if (damageType == 3) {
 			if (strcmp(enemyType.element, "Air")) {
 
 				monsterDamage = 40;
@@ -193,9 +196,7 @@ int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 				monsterDamage = 20;
 			}
 		}
-
-
-	if (damageType == 4) {
+	else {
 			if (strcmp(enemyType.element, "Earth")) {
 
 				monsterDamage = 40;
@@ -217,7 +218,6 @@ int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 	return monsterDamage;
 
   }
-
 
 void GameOver(int lives, int playerHealth) { //Function to determine Game Over
     while (lives > 0) {
