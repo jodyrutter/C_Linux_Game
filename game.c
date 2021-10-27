@@ -398,12 +398,34 @@ void PrintDamageMonsterTook(int *numDamageType){
   else{
     *damageType="Air";
   }
-   printf("\nYour %s attack was very weak and did ", *damageType);
+   printf("\nYour %s attack was", *damageType);
 }
 
+//display text for damage amount
+void GetPowerType(char *type[], int damage){
+  if (damage<10){
+    *type=" very weak";
+  }
+  else if(damage<20){
+    *type="weak";
+  }
+  else if(damage<35){
+    *type="effective";
+  }
+  else{
+    *type="super effective";
+  }
+  
+}
+
+//Calculate Damage done to the monster
 void CalculateDamageToMonster(int *monsterHealthUpdate, int userElement, int sword){
-  int damage=10;
+  int damage;
+  damage=10;   // needs to be removed and calculated with the function below
   //damage=DamageToMonsters(userElement, enemy enemyType, sword);
+  char *powerType;
+  GetPowerType(&powerType, damage);
+  printf(" %s and did ", powerType);
   *monsterHealthUpdate-=damage;
   printf("%d damage.\n", damage);
 }
