@@ -258,9 +258,6 @@ int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 			}
 		}
 	}
-	else {
-		printf("Need to enter a valid attack type like Fire(F), Water(W), Earth(E) or Air(A)!");
-	}
 	if (sword == 1) {
 			monsterDamage += 10;
 		}
@@ -323,19 +320,6 @@ int PopulateEnemies(enemy enemies[], int max_size){
 }
 
 
-
-// void FirstPath(int pathChoice){
-//   if (pathChoice == 1){
-//     printf("You have chosen Left");
-//   }
-//   else if(pathChoice == 2){
-//     printf("You have chosen Center");
-//   }
-//   else if(pathChoice ==3){
-//     printf("You have chosen Right");
-//   }
-//   printf("\n\n");
-// }
 
 //function that prints Fire, Water,Earth, Air
 void PrintAttackElements(int min, int max){
