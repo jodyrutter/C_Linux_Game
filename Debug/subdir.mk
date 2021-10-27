@@ -7,9 +7,6 @@ C_SRCS += \
 ../game.c \
 ../main.c 
 
-O_SRCS += \
-../main.o 
-
 OBJS += \
 ./game.o \
 ./main.o 
