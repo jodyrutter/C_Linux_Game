@@ -243,7 +243,7 @@ void FirstPath(int pathChoise){
   printf("\n\n");
 }
 
-
+//function that prints Fire, Water,Earth, Air
 void PrintAttackElements(int min, int max){
   printf("Choose which element to attack with:\n");
   printf("--------------------------\n");
@@ -252,7 +252,7 @@ void PrintAttackElements(int min, int max){
   PrintUserDigitOptions(min, max);
 }
 
-
+//Print attack elements fire, water, earth, air and get userInput choise
 void GetAndPrintUserAttackElementChoise(int *elementChoise){
   int elementNum=4;
   int minNum = 1;
@@ -262,7 +262,8 @@ void GetAndPrintUserAttackElementChoise(int *elementChoise){
   GetValidateUserInputDigit(elementChoise, minNum, elementNum);
   printf("my new element %d\n", *elementChoise);
 }
-                        // 1    4
+
+//Print: Type 1, 2 or 3    (changes depending on min or max)                   
 void PrintUserDigitOptions(int min, int max){
   int i;
   printf("Type ");
