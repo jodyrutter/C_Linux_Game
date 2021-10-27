@@ -69,9 +69,7 @@ int SetDifficulty(int userDif){
 void GetUserPathChoise(int *pathChoise){
   int minPathChoise=1;
   int maxPathChoise=3;
-  
   PrintUserDigitOptions(minPathChoise, maxPathChoise);
-  
   GetValidateUserInputDigit(pathChoise, minPathChoise, maxPathChoise);
   printf("\n");
 }
@@ -88,8 +86,6 @@ int GetRandomNum(int numUpTo, int startAtNum){
   //  Get random numbers 1-4
   return myRandomNum;
 }
-
-
 
 
 void PrintPath(int path)
@@ -278,8 +274,8 @@ void GetValidateUserInputDigit(int* myInput, int lowerRange, int higherRange){
       //check if user input is within range. 
       //Program breaks if user input anything other than a number (infinite loop)
     while ( *myInput >higherRange || *myInput <lowerRange){
-          printf("******ERROR*****\n");
-          printf("You have selected %d which is out of range, please select an option between %d and %d\n", *myInput, lowerRange, higherRange);
+          printf("\n******ERROR*****\n");
+          printf("You have selected %d which is out of range\nAcceptable Range: %d - %d\n\n", *myInput, lowerRange, higherRange);
           printf("Enter here: ");
           scanf("%d", myInput);
           printf("\n");
