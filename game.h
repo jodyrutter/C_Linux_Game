@@ -25,7 +25,7 @@ void GetUserAttackElementChoice(int* elementChoice);
 
 void GetAndPrintUserAttackElementChoice(int* elementChoise);
 void PrintDamageMonsterTook(int *numDamageType);
-void CalculateDamageToMonster(int *monsterHealthUpdate);
+void CalculateDamageToMonster(int *monsterHealthUpdate, int userElement, int sword);
 void CalculateDamageToPlayer(int *playerHealthUpdate, int difficulty);
 int DamageToMonsters(int damageType, enemy enemyType, int sword);
 #endif

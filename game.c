@@ -401,8 +401,9 @@ void PrintDamageMonsterTook(int *numDamageType){
    printf("\nYour %s attack was very weak and did ", *damageType);
 }
 
-void CalculateDamageToMonster(int *monsterHealthUpdate){
+void CalculateDamageToMonster(int *monsterHealthUpdate, int userElement, int sword){
   int damage=10;
+  //damage=DamageToMonsters(userElement, enemy enemyType, sword);
   *monsterHealthUpdate-=damage;
   printf("%d damage.\n", damage);
 }

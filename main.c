@@ -88,7 +88,7 @@ int main(void) {
       //we need to pass in the enemy Type to get correct damage
       PrintDamageMonsterTook(&userElementChoise);
       //*******************need to pass in CalcDamToMonster the damage type, emenyType, sword, and monsterHealth
-      CalculateDamageToMonster(&monsterHealth);
+      CalculateDamageToMonster(&monsterHealth, userElementChoise, sword);
       if (monsterHealth<=0){
         printf("Congrats you have destroyed the monster\n");
         printf("You have advanced a level\n");
