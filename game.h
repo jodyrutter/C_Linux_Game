@@ -13,14 +13,18 @@ typedef struct enemy_struct{
 
 int PopulateEnemies(enemy enemies[], int max_size);
 void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamage);
-void GetUserPathChoise(int *pathChoise);
-void FirstPath(int pathChoise);
+void GetUserPathChoice(int *pathChoice);
+void FirstPath(int pathChoice);
 // void PopulateEnemies(enemy enemies[]);
 int SetDifficulty(int userDif);
 int GetRandomNum(int numUpTo, int startAtNum);
 void PrintPath(int firstPath);
 
 void PrintAttackElements();
+
+void GetUserAttackElementChoice(int* elementChoice);
+
 void GetAndPrintUserAttackElementChoise(int* elementChoise);
+
 int DamageToMonsters(int damageType, enemy enemyType);
 #endif

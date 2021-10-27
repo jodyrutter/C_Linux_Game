@@ -66,6 +66,11 @@ int SetDifficulty(int userDif){
     printf("\n");
     return damage;
 }
+
+void GetUserPathChoice(int *pathChoice){
+  printf("Type 1, 2, or 3: ");
+  scanf("%d", pathChoice);
+}
 void GetUserPathChoise(int *pathChoise){
   int minPathChoise=1;
   int maxPathChoise=3;
@@ -74,6 +79,7 @@ void GetUserPathChoise(int *pathChoise){
   
   GetValidateUserInputDigit(pathChoise, minPathChoise, maxPathChoise);
   printf("\n");
+
 }
 
 
@@ -170,6 +176,7 @@ int ShopKeeper(int gold, int sword) {
 		}
 		prompt = getchar();
 	}
+	return gold;
 }
 
 int DamageToMonsters(int damageType, enemy enemyType, int sword) {
@@ -181,47 +188,62 @@ int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 
 	if (damageType == 1 || damageType == 2 || damageType == 3 || damageType == 4) {
 
-      if (damageType == 1) {
-        if (strcmp(enemyType.element, "Water")) {
-          monsterDamage = 40;
-        }
-        else {
-          monsterDamage = 20;
-        }
-      }
-      else if (damageType == 2) {
-          if (strcmp(enemyType.element, "Fire")) {
 
-            monsterDamage = 40;
-          }
-          else {
-            monsterDamage = 20;
-          }
-        }
-      else if (damageType == 3) {
-          if (strcmp(enemyType.element, "Air")) {
-
-            monsterDamage = 40;
-          }
-          else {
-            monsterDamage = 20;
-          }
-        }
-      else{
-          if (strcmp(enemyType.element, "Earth")) {
-
-            monsterDamage = 40;
-          }
-          else {
-            monsterDamage = 20;
-          }
-       }
-  }
-	if (sword == 1) {
-		monsterDamage += 10;
+	if (damageType == 1) {
+		if (strcmp(enemyType.element, "Water")) {
+			monsterDamage = 40;
+		}
+		else {
+			monsterDamage = 20;
+		}
 	}
+
+
+	if (damageType == 2) {
+			if (strcmp(enemyType.element, "Fire")) {
+
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+
+
+	if (damageType == 3) {
+			if (strcmp(enemyType.element, "Air")) {
+
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+
+
+	if (damageType == 4) {
+			if (strcmp(enemyType.element, "Earth")) {
+
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+	}
+	else {
+		printf("Need to enter a valid attack type like Fire(F), Water(W), Earth(E) or Air(A)!");
+	}
+
+	if (sword == 1) {
+			monsterDamage += 10;
+		}
+		return monsterDamage;
+
 	return monsterDamage;
-}
+
+  }
+
 
 void GameOver(int lives, int playerHealth) { //Function to determine Game Over
     while (lives > 0) {
@@ -280,20 +302,20 @@ int PopulateEnemies(enemy enemies[], int max_size){
 
 
 
-void FirstPath(int pathChoise){
-  if (pathChoise == 1){
+void FirstPath(int pathChoice){
+  if (pathChoice == 1){
     printf("You have chosen Left");
   }
-  else if(pathChoise == 2){
+  else if(pathChoice == 2){
     printf("You have chosen Center");
   }
-  else if(pathChoise ==3){
+  else if(pathChoice ==3){
     printf("You have chosen Right");
   }
   printf("\n\n");
 }
 
-
+//function that prints Fire, Water,Earth, Air
 void PrintAttackElements(int min, int max){
   printf("Choose which element to attack with:\n");
   printf("--------------------------\n");
@@ -303,16 +325,35 @@ void PrintAttackElements(int min, int max){
 }
 
 
+
+void GetUserAttackElementChoice(int *elementChoice){
+//Print attack elements fire, water, earth, air and get userInput choise
 void GetAndPrintUserAttackElementChoise(int *elementChoise){
+
   int elementNum=4;
   int minNum = 1;
+
+
+  scanf("%d", elementChoice);
+  
+  while ( *elementChoice >elementNum || *elementChoice <1){
+        printf("******ERROR*****\n");
+        printf("You have selected %d which is out of range, please select an attack item between 1 and 4\n", *elementChoice);
+        PrintAttackElements();
+        scanf("%d", elementChoice);
+        printf("\n");
+  }
+      printf("\n");
+      printf("element choise: %d", *elementChoice);
 
   PrintAttackElements(minNum, elementNum);
 
   GetValidateUserInputDigit(elementChoise, minNum, elementNum);
   printf("my new element %d\n", *elementChoise);
 }
-                        // 1    4
+
+
+//Print: Type 1, 2 or 3    (changes depending on min or max)                   
 void PrintUserDigitOptions(int min, int max){
   int i;
   printf("Type ");
