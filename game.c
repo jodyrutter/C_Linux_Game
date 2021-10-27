@@ -125,7 +125,54 @@ void PrintPath4(){
   printf("FIX ME -- CREATE PATH\n\n");
 }
 
-int DamageToMonsters(int damageType, enemy enemyType) {
+int RandomGold(int gold) {
+	/*
+	 * Simple gold generator, invoke on monster death or mon health <= 0
+	 * gives gold min 10 max 25 and adds to gold purse.
+	*/
+	gold += GetRandomNum(25, 10);
+
+	return gold;
+}
+
+int ShopKeeper(int gold, int sword) {
+	/*
+	 * Takes input fold from the user and sword boolean int, if purchase is made
+	 * gold is automatically subtracted
+	 * Sword is permenant item once bought and gives slight attack dmg increase
+	 * the armoring is a health buff item that can be purchased multiples times to make HP over 100
+	 * health restore is a full health restoring potion if health is below base max of 100
+	*/
+	printf("Welcome to the shop traveller, see my wares below or enter q to exit!\n");
+	char prompt = getchar();
+
+	while(prompt != 'q') {
+		printf("A. Sword(+10 dmg) B. Armor(+10 HP) C. Life Potion(restores health)\n");
+		printf("Gold cost 10      Gold Cost 20         Gold Cost 30\n");
+		if (prompt == 'A' || prompt == 'a') {
+			if (sword != 1) {
+				printf("You have purchased the sword\n");
+				printf("%d is your remaining gold\n", gold - 10);
+				sword = 1;
+			}
+			else {
+				printf("You already have a sword, you cannot dual wield!\n");
+			}
+		}
+		else if (prompt == 'B' || prompt == 'b') {
+				printf("You have purchased the shield\n");
+				printf("%d is your remaining gold\n", gold - 20);
+				// adds +10 to player HP, no HP defined TODO
+		}
+		else if (prompt == 'C' || prompt == 'c') {
+			printf("You have purchased the potion and your health is fully restored\n");
+			//if player health less than 100 then make 100 TODO
+		}
+		prompt = getchar();
+	}
+}
+
+int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 	/*
 	 * Simple damage function that looks like struct enemy element and then assigns damage accordingly
 	 * currently set to be static can be converted to dynamic depending on difficulty etc...
@@ -170,6 +217,9 @@ int DamageToMonsters(int damageType, enemy enemyType) {
           }
        }
   }
+	if (sword == 1) {
+		monsterDamage += 10;
+	}
 	return monsterDamage;
 }
 

@@ -23,6 +23,8 @@ int main(void) {
   int numOfPaths=4;
   int userPathChoise;
   int userElementChoise;
+  int usrGold = 5;
+  int usrSword, usrArmor = 0;
 
 
 
