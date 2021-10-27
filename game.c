@@ -64,16 +64,12 @@ int SetDifficulty(int userDif){
 }
 
 void GetUserPathChoice(int *pathChoice){
-  printf("Type 1, 2, or 3: ");
-  scanf("%d", pathChoice);
-}
-void GetUserPathChoise(int *pathChoise){
-  int minPathChoise=1;
-  int maxPathChoise=3;
+  int minPathChoice=1;
+  int maxPathChoice=3;
   
-  PrintUserDigitOptions(minPathChoise, maxPathChoise);
+  PrintUserDigitOptions(minPathChoice, maxPathChoice);
   
-  GetValidateUserInputDigit(pathChoise, minPathChoise, maxPathChoise);
+  GetValidateUserInputDigit(pathChoice, minPathChoice, maxPathChoice);
   printf("\n");
 
 }
@@ -305,10 +301,8 @@ void PrintAttackElements(int min, int max){
 }
 
 
-
-void GetUserAttackElementChoice(int *elementChoice){
-//Print attack elements fire, water, earth, air and get userInput choise
-void GetAndPrintUserAttackElementChoise(int *elementChoise){
+//Print attack elements fire, water, earth, air and get userInput choice
+void GetAndPrintUserAttackElementChoice(int *elementChoice){
 
   int elementNum=4;
   int minNum = 1;
@@ -319,17 +313,17 @@ void GetAndPrintUserAttackElementChoise(int *elementChoise){
   while ( *elementChoice >elementNum || *elementChoice <1){
         printf("******ERROR*****\n");
         printf("You have selected %d which is out of range, please select an attack item between 1 and 4\n", *elementChoice);
-        PrintAttackElements();
+        //PrintAttackElements();
         scanf("%d", elementChoice);
         printf("\n");
   }
       printf("\n");
-      printf("element choise: %d", *elementChoice);
+      printf("element choice: %d", *elementChoice);
 
   PrintAttackElements(minNum, elementNum);
 
-  GetValidateUserInputDigit(elementChoise, minNum, elementNum);
-  printf("my new element %d\n", *elementChoise);
+  GetValidateUserInputDigit(elementChoice, minNum, elementNum);
+  printf("my new element %d\n", *elementChoice);
 }
 
 

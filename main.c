@@ -45,7 +45,7 @@ int main(void) {
 	  }
 	  //Print instructions for 1st Path
 	  PrintPath(monster1, monster2, monster3, enemies, numEnemies);
-	  GetUserPathChoise(&userPathChoise);
+	  GetUserPathChoice(&userPathChoise);
 	  switch (userPathChoise){
 		  case 1:
 			PrintEnemyPrompts(monster1, enemies);
@@ -59,7 +59,7 @@ int main(void) {
 		  default:
 			printf("This is not a valid path\n");
 			while(userPathChoise != 1 && userPathChoise != 2 && userPathChoise != 3){
-				GetUserPathChoise(&userPathChoise);
+				GetUserPathChoice(&userPathChoise);
 			}
 	  }
   }
@@ -72,8 +72,8 @@ int main(void) {
 
 
   PrintAttackElements();
-  GetUserAttackElementChoice(&userElementChoice);
-  DamageToMonsters(userElementChoice, enemies.element);
+  //GetUserAttackElementChoice(&userElementChoice);
+  //DamageToMonsters(userElementChoice, enemies.element);
 
   GetAndPrintUserAttackElementChoice(&userElementChoice);
   // DamageToMonsters(userElementChoise, enemies.element);
@@ -112,19 +112,6 @@ int main(void) {
 
 ////-------------------------------------------------- 
     
-
-  	for(int x = 0; x<i; x++){
-		printf("Tunnel Hint: %s\n", enemies[x].tunnelHint);
-		printf("Enemy Name: %s\n", enemies[x].name);
-		printf("Enemy Element: %s\n", enemies[x].element);
-		printf("Prompt: %s\n", enemies[x].startingPrompt);
-		printf("Ascii art: \n");
-		int j = 0;
-		while(strcmp(enemies[x].asciiArt[j],"next") != 0){
-			printf("%s\n", enemies[x].asciiArt[j]);
-			j++;
-		}
-	}
 
   // 	for(int x = 0; x<i; x++){
 	// 	printf("Tunnel Hint: %s\n", enemies[x].tunnelHint);
