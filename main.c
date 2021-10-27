@@ -82,12 +82,15 @@ int main(void) {
     monsterHealth=100;
     playerHealth=100;
     while(1){
-      printf("\nMonster health is: %d\nPlayer health is: %d\nPlayer available lives: %d\n\n\n", monsterHealth, playerHealth, lives);
+      printf("\nMonster health is: %d\n", monsterHealth);
+      printf("Player health is: %d\n", playerHealth);
+      printf("Player available lives: %d\n\n\n", lives);
       GetAndPrintUserAttackElementChoice(&userElementChoise);
-
-      //we need to pass in the enemy Type to get correct damage
+      
       PrintDamageMonsterTook(&userElementChoise);
+
       //*******************need to pass in CalcDamToMonster the damage type, emenyType, sword, and monsterHealth
+      //we need to pass in the enemy Type to get correct damage
       CalculateDamageToMonster(&monsterHealth, userElementChoise, sword);
       if (monsterHealth<=0){
         printf("Congrats you have destroyed the monster\n");

@@ -427,7 +427,7 @@ void CalculateDamageToMonster(int *monsterHealthUpdate, int userElement, int swo
   GetPowerType(&powerType, damage);
   printf(" %s and did ", powerType);
   *monsterHealthUpdate-=damage;
-  printf("%d damage.\n", damage);
+  printf("%d damage.", damage);
 }
 
 void CalculateDamageToPlayer(int *playerHealthUpdate, int difficulty){
