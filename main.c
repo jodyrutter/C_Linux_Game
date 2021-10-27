@@ -38,7 +38,9 @@ int main(void) {
   int level = 0;
   int usrSword, usrArmor = 0;
   int userPathChoice;
-  int userElementChoice;
+  int userElementChoise;
+  int monsterHealth;
+  int playerHealth;
   
   //Get user name, set difficulty, set monster Damage per hit
   GetIntroductionInfo(name, &difficulty, &monsterDamagePerHit);
@@ -75,57 +77,62 @@ int main(void) {
 				GetUserPathChoice(&userPathChoise);
 			}
 	  }
+
+
+    monsterHealth=100;
+    playerHealth=100;
+    while(1){
+      printf("\nMonster health is: %d\nPlayer health is: %d\nPlayer available lives: %d\n\n\n", monsterHealth, playerHealth, lives);
+      GetAndPrintUserAttackElementChoice(&userElementChoise);
+
+      //we need to pass in the enemy Type to get correct damage
+      PrintDamageMonsterTook(&userElementChoise);
+      CalculateDamageToMonster(&monsterHealth);
+      if (monsterHealth<=0){
+        printf("Congrats you have destroyed the monster\n");
+        printf("You have advanced a level\n");
+        fightWon=1;
+        break;
+      }
+      CalculateDamageToPlayer(&playerHealth, difficulty);
+      if (playerHealth<=0){
+          printf("You have lost all your health\n");
+          lives --;
+          if (lives>0){
+            printf("Available lives: %d", lives);
+            break;
+          }
+          else{
+            printf("---------------------------\n");
+            printf("---------------------------\n");
+            printf("---------GAME OVER---------\n");
+            printf("---------------------------\n");
+            printf("---------------------------\n");
+            return 0;
+          }
+      }
+    }
+    //Create function to print player health and lives and monster health
+    //in the function, if user has portions, ask user if they want to use 1
+    //
+
+    //create function in game.c for the following:
+    printf("\n\n\n\n");
+
+
+
 	  if(fightWon == 1){
 		level++;
 	  }
 	  ShopKeeper(&usrGold, &sword, &potions, &armor, &lives);
+
+
   }
 
 
-  //display instructions based on user Path Choise. 
-  //for ex. if 1. Left is a dim, 2. Center - A loud roar, 3. Right there is only quietness
-  //if user chose 1, the function will give info from Left is a dim.. etc.
-  //FirstPath(userPathChoice);
-
-
-  //PrintAttackElements();
-  // GetUserAttackElementChoice(&userElementChoice);
-  //DamageToMonsters(userElementChoice, enemies.element);
-
-  // GetAndPrintUserAttackElementChoice(&userElementChoice);
-  // DamageToMonsters(userElementChoise, enemies.element);
-
-
-  //create a function that passes in firstPath and userPathChoise and then gives
-  //appropriate directions
-  //create a function inside the above, in game.c that takes you to specific instructions based on path and userPathChoise
-
-
-  
 
 
 
-
-// //------------------------------------
-//   //USE THis LATER to randomly select paths that were not used before:
-//   secondPath=GetRandomPathNum(numOfPaths,1);
-//   thirdPath=GetRandomPathNum(numOfPaths,1);
-//   fourthPath=GetRandomPathNum(numOfPaths,1);
-
-
-//   //Randomly select each path and ensure we don't have the same path twice
-//   //create a function for this
-//   while (secondPath==firstPath){
-//     secondPath=GetRandomPathNum(numOfPaths,1);
-//   }
-//   while (thirdPath==firstPath || thirdPath==secondPath){
-//     thirdPath=GetRandomPathNum(numOfPaths,1);
-//   }
-//   while (fourthPath==firstPath || fourthPath==secondPath || fourthPath==thirdPath){
-//     fourthPath=GetRandomPathNum(numOfPaths,1);
-//   }
-  
-//   printf("my 1st is %d, my 2nd is %d, my 3rd is %d,my 4th is %d", firstPath, secondPath, thirdPath, fourthPath);
 
 ////-------------------------------------------------- 
     

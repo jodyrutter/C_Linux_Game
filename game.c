@@ -11,6 +11,8 @@ int minDif=1; //min count for difficulty - starts at 1 - Beginner
 int maxDif=3; //max count for difficulty - ends at 1 - Advanced
 void PrintUserDigitOptions(int min, int max);
 int GetMonsterDamage(int difficulty);
+void PrintAttackElements(int min, int max);
+void PrintDamageMonsterTook(int *numDamageType);
 
 void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamage){
   printf("Hello adventurer, what is your name?\n");
@@ -27,8 +29,8 @@ void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamag
   printf("\n");
   //Print difficulty, Set damage taken by monster based on level
   PrintDifficulty(* userDifficulty);
-  * monsterDamage=GetMonsterDamage(* userDifficulty);
-  printf("Monster Damage per hit is: %d\n", * monsterDamage);
+  // * monsterDamage=GetMonsterDamage(* userDifficulty);
+  // printf("Monster Damage per hit is: %d\n", * monsterDamage);
   printf("\n");
 }
 
@@ -351,13 +353,9 @@ void GetAndPrintUserAttackElementChoice(int *elementChoice){
   int elementNum=4;
   int minNum = 1;
 
-
-  scanf("%d", elementChoice);
-
   PrintAttackElements(minNum, elementNum);
 
   GetValidateUserInputDigit(elementChoice, minNum, elementNum);
-  printf("my new element %d\n", *elementChoice);
 }
 
 
@@ -383,4 +381,34 @@ void GetValidateUserInputDigit(int* myInput, int lowerRange, int higherRange){
           printf("\n");
     }
 
+}
+
+
+void PrintDamageMonsterTook(int *numDamageType){
+  char *damageType[10];
+  if (*numDamageType==1){
+      *damageType="Fire";
+  }
+  else if(*numDamageType==2){
+    *damageType="Water";
+  }
+  else if(*numDamageType==3){
+    *damageType="Earth";
+  }
+  else{
+    *damageType="Air";
+  }
+   printf("\nYour %s attack was very weak and did ", *damageType);
+}
+
+void CalculateDamageToMonster(int *monsterHealthUpdate){
+  int damage=10;
+  *monsterHealthUpdate-=damage;
+  printf("%d damage.\n", damage);
+}
+
+void CalculateDamageToPlayer(int *playerHealthUpdate, int difficulty){
+  int damageTaken=GetMonsterDamage(difficulty);
+  *playerHealthUpdate-=damageTaken;
+  printf("The ENTER_MONSTER_TYPE_HERE blasted you and did %d damage!\n", damageTaken);
 }
