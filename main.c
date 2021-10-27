@@ -19,6 +19,8 @@ int main(void) {
   int monsterDamagePerHit;
   // int* playerAttackDamage;
   int lives=3;
+  int sword = 0; //If sword is 1, they have a sword. If not, then this is 0.
+  int armor = 0; //If armor is 1, they have a armor. If not, then this is 0.
   int potions=0;
   int firstPath;
   int monster1;
@@ -32,7 +34,7 @@ int main(void) {
   // int fourthPath;
   int numOfPaths=4;
   int userPathChoise;
-  int usrGold = 5;
+  int usrGold = 500;
   int level = 0;
   int usrSword, usrArmor = 0;
   int userPathChoice;
@@ -58,6 +60,7 @@ int main(void) {
 	  switch (userPathChoise){
 		  case 1:
 			PrintEnemyPrompts(monster1, enemies);
+			//Fight function here
 			break;
 		  case 2:
 			PrintEnemyPrompts(monster2, enemies);
@@ -74,6 +77,7 @@ int main(void) {
 	  if(fightWon == 1){
 		level++;
 	  }
+	  ShopKeeper(&usrGold, &sword, &potions, &armor, &lives);
   }
 
 

@@ -105,7 +105,7 @@ void PrintEnemyPrompts(int enemyNum, enemy enemies[]){
 
 void PrintPath(int monster1, int monster2, int monster3, enemy enemies[], int numEnemies)
 {
-  printf("Pick a path (‘1’, ‘2’, or ‘3’).\n");
+  printf("Pick a path ('1', '2', or '3').\n");
   printf("---------------------------------\n");
   printf(" 1. Left - %s\n", enemies[monster1].tunnelHint);
   printf(" 2. Straight - %s\n", enemies[monster2].tunnelHint);
@@ -123,7 +123,7 @@ int RandomGold(int gold) {
 	return gold;
 }
 
-int ShopKeeper(int gold, int sword) {
+int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {
 	/*
 	 * Takes input fold from the user and sword boolean int, if purchase is made
 	 * gold is automatically subtracted
@@ -135,30 +135,84 @@ int ShopKeeper(int gold, int sword) {
 	char prompt = getchar();
 
 	while(prompt != 'q') {
-		printf("A. Sword(+10 dmg) B. Armor(+10 HP) C. Life Potion(restores health)\n");
-		printf("Gold cost 10      Gold Cost 20         Gold Cost 30\n");
+	    if(*sword==0){
+	        printf("A. Sword(+10 dmg)\n");
+		    printf("Gold cost: 10\n");
+	    }
+	    else{
+	        printf("A. Lootbox\n");
+	        printf("Gold cost: 10\n");
+	    }
+	    if(*armor==0){
+	        printf("B. Armor(+10 HP)\n");
+	    }
+	    else{
+	        printf("B. Extra life\n");
+	    }
+		printf("Gold cost: 20\n");
+		printf("C. Life Potion(restores health)\n");
+		printf("Gold cost: 30\n");
 		if (prompt == 'A' || prompt == 'a') {
-			if (sword != 1) {
+			if (*sword != 1 && *gold >= 10) {
 				printf("You have purchased the sword\n");
-				printf("%d is your remaining gold\n", gold - 10);
-				sword = 1;
+				*sword = 1;
+				*gold-=10;
+			    printf("%d is your remaining gold\n", *gold);
+			}
+			else if(*gold >=10){
+			    printf("You have purchased the lootbox\n");
+			    int itemR = GetRandomNum(4, 0);
+			    if(itemR == 0){
+			        printf("You received a potion from the lootbox!\n");
+			        *potions++;
+			    }
+			    else if(itemR == 1){
+			        printf("You received an extra life from the lootbox!\n");
+			        *lives++;
+			    }
+			    else{
+			        printf("Guess you weren't that lucky! You received nothing from the lootbox! ;(\n");
+			    }
+			    *gold-=10;
+			    printf("%d is your remaining gold\n", *gold);
 			}
 			else {
-				printf("You already have a sword, you cannot dual wield!\n");
+				printf("You do not have enough gold!\n");
 			}
 		}
 		else if (prompt == 'B' || prompt == 'b') {
-				printf("You have purchased the shield\n");
-				printf("%d is your remaining gold\n", gold - 20);
-				// adds +10 to player HP, no HP defined TODO
+		        if(*gold >=20 && *armor !=1){
+				    printf("You have purchased armor\n");
+				    *gold-=20;
+				    printf("%d is your remaining gold\n", *gold);
+				    *armor = 1;
+		        }
+		        else if(*gold >= 20){
+		            printf("You have purchased an extra life\n");
+		            *lives++;
+		            *gold-=20;
+				    printf("%d is your remaining gold\n", *gold);
+		        }
+		        else{
+		            printf("You do not have enough gold!\n");
+		        }
 		}
 		else if (prompt == 'C' || prompt == 'c') {
-			printf("You have purchased the potion and your health is fully restored\n");
-			//if player health less than 100 then make 100 TODO
+		    if(*gold >= 30){
+			    printf("You have purchased the potion and your health is fully restored\n");
+			    *potions++;
+			    *gold-=30;
+			    printf("%d is your remaining gold\n", *gold);
+		    }
+		    else{
+		        printf("You do not have enough gold!\n");
+		    }
 		}
+		printf("Enter 'q' to quit.\n");
+		printf("\n");
 		prompt = getchar();
 	}
-	return gold;
+	return *gold;
 }
 
 int DamageToMonsters(int damageType, enemy enemyType, int sword) {
