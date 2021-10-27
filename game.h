@@ -21,6 +21,6 @@ int GetRandomNum(int numUpTo, int startAtNum);
 void PrintPath(int firstPath);
 
 void PrintAttackElements();
-void GetUserAttackElementChoise(int* elementChoise);
+void GetAndPrintUserAttackElementChoise(int* elementChoise);
 int DamageToMonsters(int damageType, enemy enemyType);
 #endif
