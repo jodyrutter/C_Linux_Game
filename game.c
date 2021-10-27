@@ -2,29 +2,27 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <ctype.h>
 #include "game.h"
 
-//predefine functions
-void PrintPath1();
-void PrintPath2();
-void PrintPath3();
-void PrintPath4();
 int SetDifficulty(int userDif);
-
-
+void GetValidateUserInputDigit(int* myInput, int lowerRange, int higherRange);
+int minDif=1; //min count for difficulty - starts at 1 - Beginner
+int maxDif=3; //max count for difficulty - ends at 1 - Advanced
+void PrintUserDigitOptions(int min, int max);
 
 void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamage){
   printf("Hello adventurer, what is your name?\n");
-  scanf("%s", userName);
-  // strcpy(name, "Elenie"); //for testing only
+  // scanf("%s", userName);
+  strcpy(userName, "Elenie"); //for testing only
   printf("\nNice to meet you %s.\nYou have been called here to explore these vast catacombs in search of great treasure and riches.\n\n", userName);
   printf("What difficulty would you like?\n");
   printf("--------------------------\n");
   printf("1. Beginner\n2. Intermediate\n3. Advanced\n");
   printf("--------------------------\n");
-  printf("Type 1, 2, or 3: ");
-  scanf("%d", userDifficulty);
-  // difficulty=1; //for testing only
+  PrintUserDigitOptions(minDif, maxDif);
+  GetValidateUserInputDigit(userDifficulty, minDif, maxDif);
+  // userDifficulty=1; //for testing only
   printf("\n");
   //Print difficulty, Set damage taken by monster based on level
   *monsterDamage=SetDifficulty(* userDifficulty);
@@ -39,7 +37,6 @@ int SetDifficulty(int userDif){
   int damage;
   int basedamage = 20;
   time_t t;
-  //int seed = srand((unsigned) time(&t));
 //  Based off the defined user difficulty, pads damage output based off the difficulty and basedamage variable
 //  damage is range based generated randomly from rand/srand
     if (userDif==1){
@@ -65,9 +62,20 @@ int SetDifficulty(int userDif){
     printf("\n");
     return damage;
 }
-void GetUserPathChoise(int *pathChoise){
+
+void GetUserPathChoice(int *pathChoice){
   printf("Type 1, 2, or 3: ");
-  scanf("%d", pathChoise);
+  scanf("%d", pathChoice);
+}
+void GetUserPathChoise(int *pathChoise){
+  int minPathChoise=1;
+  int maxPathChoise=3;
+  
+  PrintUserDigitOptions(minPathChoise, maxPathChoise);
+  
+  GetValidateUserInputDigit(pathChoise, minPathChoise, maxPathChoise);
+  printf("\n");
+
 }
 
 
@@ -103,6 +111,134 @@ void PrintPath(int monster1, int monster2, int monster3, enemy enemies[], int nu
   printf("---------------------------------\n");
 }
 
+int RandomGold(int gold) {
+	/*
+	 * Simple gold generator, invoke on monster death or mon health <= 0
+	 * gives gold min 10 max 25 and adds to gold purse.
+	*/
+	gold += GetRandomNum(25, 10);
+
+	return gold;
+}
+
+int ShopKeeper(int gold, int sword) {
+	/*
+	 * Takes input fold from the user and sword boolean int, if purchase is made
+	 * gold is automatically subtracted
+	 * Sword is permenant item once bought and gives slight attack dmg increase
+	 * the armoring is a health buff item that can be purchased multiples times to make HP over 100
+	 * health restore is a full health restoring potion if health is below base max of 100
+	*/
+	printf("Welcome to the shop traveller, see my wares below or enter q to exit!\n");
+	char prompt = getchar();
+
+	while(prompt != 'q') {
+		printf("A. Sword(+10 dmg) B. Armor(+10 HP) C. Life Potion(restores health)\n");
+		printf("Gold cost 10      Gold Cost 20         Gold Cost 30\n");
+		if (prompt == 'A' || prompt == 'a') {
+			if (sword != 1) {
+				printf("You have purchased the sword\n");
+				printf("%d is your remaining gold\n", gold - 10);
+				sword = 1;
+			}
+			else {
+				printf("You already have a sword, you cannot dual wield!\n");
+			}
+		}
+		else if (prompt == 'B' || prompt == 'b') {
+				printf("You have purchased the shield\n");
+				printf("%d is your remaining gold\n", gold - 20);
+				// adds +10 to player HP, no HP defined TODO
+		}
+		else if (prompt == 'C' || prompt == 'c') {
+			printf("You have purchased the potion and your health is fully restored\n");
+			//if player health less than 100 then make 100 TODO
+		}
+		prompt = getchar();
+	}
+	return gold;
+}
+
+int DamageToMonsters(int damageType, enemy enemyType, int sword) {
+	/*
+	 * Simple damage function that looks like struct enemy element and then assigns damage accordingly
+	 * currently set to be static can be converted to dynamic depending on difficulty etc...
+	*/
+	int monsterDamage;
+
+	if (damageType == 1 || damageType == 2 || damageType == 3 || damageType == 4) {
+
+
+	if (damageType == 1) {
+		if (strcmp(enemyType.element, "Water")) {
+			monsterDamage = 40;
+		}
+		else {
+			monsterDamage = 20;
+		}
+	}
+
+
+	if (damageType == 2) {
+			if (strcmp(enemyType.element, "Fire")) {
+
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+
+
+	if (damageType == 3) {
+			if (strcmp(enemyType.element, "Air")) {
+
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+
+
+	if (damageType == 4) {
+			if (strcmp(enemyType.element, "Earth")) {
+
+				monsterDamage = 40;
+			}
+			else {
+				monsterDamage = 20;
+			}
+		}
+	}
+	else {
+		printf("Need to enter a valid attack type like Fire(F), Water(W), Earth(E) or Air(A)!");
+	}
+
+	if (sword == 1) {
+			monsterDamage += 10;
+		}
+		return monsterDamage;
+
+	return monsterDamage;
+
+  }
+
+
+void GameOver(int lives, int playerHealth) { //Function to determine Game Over
+    while (lives > 0) {
+        if (playerHealth <= 0) {
+            lives = lives - 1; //Decrement lives from game
+            if (lives <= 0) {
+                printf("Game Over");
+            }
+        }
+     }
+}
+
+
+
+
 /**
  * Function to populate an array of enemies with data from file.
  * 
@@ -114,7 +250,7 @@ int PopulateEnemies(enemy enemies[], int max_size){
 	FILE *fptr; //Declare a file to open.
 	char *line = NULL;  //Declare a line variable to read in a file line by line.
 	size_t len = 0; //Declare a length variable to read in length of a line in a file.
-	ssize_t read; //Variable to determine if end of file is reached.
+	size_t read; //Variable to determine if end of file is reached.
 	fptr = fopen("enemy.txt", "r"); //Open enemy.config for reading in contents.
 	//Loop to read in contents of enemy.config line by line and create and populate the struct array with enemies.
 	int i = 0;
@@ -142,4 +278,81 @@ int PopulateEnemies(enemy enemies[], int max_size){
 	}
 	fclose(fptr);
     return i;
+}
+
+
+
+void FirstPath(int pathChoice){
+  if (pathChoice == 1){
+    printf("You have chosen Left");
+  }
+  else if(pathChoice == 2){
+    printf("You have chosen Center");
+  }
+  else if(pathChoice ==3){
+    printf("You have chosen Right");
+  }
+  printf("\n\n");
+}
+
+//function that prints Fire, Water,Earth, Air
+void PrintAttackElements(int min, int max){
+  printf("Choose which element to attack with:\n");
+  printf("--------------------------\n");
+  printf("1. Fire\n2. Water\n3. Earth\n4. Air\n");
+  printf("--------------------------\n");
+  PrintUserDigitOptions(min, max);
+}
+
+
+
+void GetUserAttackElementChoice(int *elementChoice){
+//Print attack elements fire, water, earth, air and get userInput choise
+void GetAndPrintUserAttackElementChoise(int *elementChoise){
+
+  int elementNum=4;
+  int minNum = 1;
+
+
+  scanf("%d", elementChoice);
+  
+  while ( *elementChoice >elementNum || *elementChoice <1){
+        printf("******ERROR*****\n");
+        printf("You have selected %d which is out of range, please select an attack item between 1 and 4\n", *elementChoice);
+        PrintAttackElements();
+        scanf("%d", elementChoice);
+        printf("\n");
+  }
+      printf("\n");
+      printf("element choise: %d", *elementChoice);
+
+  PrintAttackElements(minNum, elementNum);
+
+  GetValidateUserInputDigit(elementChoise, minNum, elementNum);
+  printf("my new element %d\n", *elementChoise);
+}
+
+
+//Print: Type 1, 2 or 3    (changes depending on min or max)                   
+void PrintUserDigitOptions(int min, int max){
+  int i;
+  printf("Type ");
+  for (i=min; i<max; i++){
+    printf("%d, ", i);
+  }
+  printf("or %d: ", max);
+}
+
+void GetValidateUserInputDigit(int* myInput, int lowerRange, int higherRange){
+    scanf("%d", myInput);
+      //check if user input is within range. 
+      //Program breaks if user input anything other than a number (infinite loop)
+    while ( *myInput >higherRange || *myInput <lowerRange){
+          printf("******ERROR*****\n");
+          printf("You have selected %d which is out of range, please select an option between %d and %d\n", *myInput, lowerRange, higherRange);
+          printf("Enter here: ");
+          scanf("%d", myInput);
+          printf("\n");
+    }
+
 }

@@ -17,5 +17,13 @@ void GetUserPathChoise(int *pathChoise);
 void PrintEnemyPrompts(int enemyNum, enemy enemies[]);
 int SetDifficulty(int userDif);
 int GetRandomNum(int numUpTo, int startAtNum);
-void PrintPaths(int monster1, int monster2, int monster3, enemy enemies[], int numEnemies);
+void PrintPath(int monster1, int monster2, int monster3, enemy enemies[], int numEnemies);
+
+void PrintAttackElements();
+
+void GetUserAttackElementChoice(int* elementChoice);
+
+void GetAndPrintUserAttackElementChoise(int* elementChoise);
+
+int DamageToMonsters(int damageType, enemy enemyType);
 #endif

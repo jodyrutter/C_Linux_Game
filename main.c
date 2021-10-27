@@ -7,9 +7,12 @@
 
 int main(void) {
   int max_size = 200;
+
   enemy enemies[max_size];
   int numEnemies;
   numEnemies = PopulateEnemies(enemies, max_size);
+
+  // enemy enemies[max_size];
   char name[30];
   int difficulty;
   int monsterDamagePerHit;
@@ -27,6 +30,10 @@ int main(void) {
   // int fourthPath;
   int numOfPaths=4;
   int userPathChoise;
+  int usrGold = 5;
+  int usrSword, usrArmor = 0;
+  int userPathChoice;
+  int userElementChoice;
   //Get user name, set difficulty, set monster Damage per hit
   GetIntroductionInfo(name, &difficulty, &monsterDamagePerHit);
   while(lives>0){
@@ -58,13 +65,18 @@ int main(void) {
   }
 
 
+  //display instructions based on user Path Choise. 
+  //for ex. if 1. Left is a dim, 2. Center - A loud roar, 3. Right there is only quietness
+  //if user chose 1, the function will give info from Left is a dim.. etc.
+  //FirstPath(userPathChoice);
 
-  
-  //RANDOMLY SELECT ONE OF OUR 4 PATHS (4 DIFFERENT MONSTERS)
-  firstPath=GetRandomNum(numOfPaths, 1);
- 
 
-  
+  PrintAttackElements();
+  GetUserAttackElementChoice(&userElementChoice);
+  DamageToMonsters(userElementChoice, enemies.element);
+
+  GetAndPrintUserAttackElementChoice(&userElementChoice);
+  // DamageToMonsters(userElementChoise, enemies.element);
 
 
   //create a function that passes in firstPath and userPathChoise and then gives
@@ -98,7 +110,37 @@ int main(void) {
   
 //   printf("my 1st is %d, my 2nd is %d, my 3rd is %d,my 4th is %d", firstPath, secondPath, thirdPath, fourthPath);
 
-////--------------------------------------------------- 
+////-------------------------------------------------- 
+    
+
+  	for(int x = 0; x<i; x++){
+		printf("Tunnel Hint: %s\n", enemies[x].tunnelHint);
+		printf("Enemy Name: %s\n", enemies[x].name);
+		printf("Enemy Element: %s\n", enemies[x].element);
+		printf("Prompt: %s\n", enemies[x].startingPrompt);
+		printf("Ascii art: \n");
+		int j = 0;
+		while(strcmp(enemies[x].asciiArt[j],"next") != 0){
+			printf("%s\n", enemies[x].asciiArt[j]);
+			j++;
+		}
+	}
+
+  // 	for(int x = 0; x<i; x++){
+	// 	printf("Tunnel Hint: %s\n", enemies[x].tunnelHint);
+	// 	printf("Enemy Name: %s\n", enemies[x].name);
+	// 	printf("Enemy Element: %s\n", enemies[x].element);
+	// 	printf("Prompt: %s\n", enemies[x].startingPrompt);
+	// 	printf("Ascii art: \n");
+	// 	int j = 0;
+	// 	while(strcmp(enemies[x].asciiArt[j],"next") != 0){
+	// 		printf("%s\n", enemies[x].asciiArt[j]);
+	// 		j++;
+	// 	}
+	// }
+
+
+
 
   return 0;
 }
