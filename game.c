@@ -39,7 +39,7 @@ int SetDifficulty(int userDif){
   int damage;
   int basedamage = 20;
   time_t t;
-  int seed = srand((unsigned) time(&t));
+  //int seed = srand((unsigned) time(&t));
 //  Based off the defined user difficulty, pads damage output based off the difficulty and basedamage variable
 //  damage is range based generated randomly from rand/srand
     if (userDif==1){
@@ -84,39 +84,23 @@ int GetRandomNum(int numUpTo, int startAtNum){
 }
 
 
+void PrintEnemyPrompts(int enemyNum, enemy enemies[]){
+	printf("%s\n\n\n", enemies[enemyNum].startingPrompt);
+		int j = 0;
+		while(strcmp(enemies[enemyNum].asciiArt[j],"next") != 0){
+		printf("%s\n", enemies[enemyNum].asciiArt[j]);
+		j++;
+	}
+}
 
-
-void PrintPath(int path)
+void PrintPath(int monster1, int monster2, int monster3, enemy enemies[], int numEnemies)
 {
-  printf("To start, pick a path\n");
-  
-  if (path==1){
-    PrintPath1();
-  }
-  else if (path==2){
-    PrintPath2();
-  }
-  else if (path==3){
-    PrintPath3();
-  }
-  else{
-    PrintPath4();
-  }
-}
-
-
-void PrintPath1(){
-  printf("1. Left - There is a dim light somewhere down this tunnel.\n2. Center - A loud roar has erupted from this tunnel.\n3. Right - There is only quietness from this tunnel. \n\n"); 
-}
-
-void PrintPath2(){
-  printf("1. Left - This tunnel sounds very windy.\n2. Center - There is a dim light somewhere down this tunnel.\n3. Right - A woman's voice can be heard coming from this tunnel. Her voice is beautiful\n\n");
-}
-void PrintPath3(){
-  printf("1. Left - You hear rocks falling down this tunnel.\n2. Center - There is the sound of rushing water coming from this tunnel.\n3. Right - There is a dim light somewhere down this tunner.\n\n");
-}
-void PrintPath4(){
-  printf("FIX ME -- CREATE PATH");
+  printf("Pick a path (‘1’, ‘2’, or ‘3’).\n");
+  printf("---------------------------------\n");
+  printf(" 1. Left - %s\n", enemies[monster1].tunnelHint);
+  printf(" 2. Straight - %s\n", enemies[monster2].tunnelHint);
+  printf(" 3. Right - %s\n", enemies[monster3].tunnelHint);
+  printf("---------------------------------\n");
 }
 
 /**

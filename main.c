@@ -8,32 +8,63 @@
 int main(void) {
   int max_size = 200;
   enemy enemies[max_size];
-  PopulateEnemies(enemies, max_size);
+  int numEnemies;
+  numEnemies = PopulateEnemies(enemies, max_size);
   char name[30];
   int difficulty;
   int monsterDamagePerHit;
   // int* playerAttackDamage;
-  // int lives=3;
-  // int potions=0;
+  int lives=3;
+  int potions=0;
   int firstPath;
+  int monster1;
+  int monster2;
+  int monster3;
+  int fightWon = 1; //To comply with old c, 0 means false, 1 means true.
+  time_t t;
   // int secondPath;
   // int thirdPath;
   // int fourthPath;
   int numOfPaths=4;
   int userPathChoise;
-
-
-
   //Get user name, set difficulty, set monster Damage per hit
   GetIntroductionInfo(name, &difficulty, &monsterDamagePerHit);
+  while(lives>0){
+	  if(fightWon == 1){
+		srand(time(0));
+		monster1 = rand() % numEnemies;
+		monster2 = rand() % numEnemies;
+		monster3 = rand() % numEnemies;  
+	  }
+	  //Print instructions for 1st Path
+	  PrintPath(monster1, monster2, monster3, enemies, numEnemies);
+	  GetUserPathChoise(&userPathChoise);
+	  switch (userPathChoise){
+		  case 1:
+			PrintEnemyPrompts(monster1, enemies);
+			break;
+		  case 2:
+			PrintEnemyPrompts(monster2, enemies);
+			break;
+		  case 3:
+			PrintEnemyPrompts(monster3, enemies);
+			break;
+		  default:
+			printf("This is not a valid path\n");
+			while(userPathChoise != 1 && userPathChoise != 2 && userPathChoise != 3){
+				GetUserPathChoise(&userPathChoise);
+			}
+	  }
+  }
+
+
+
   
   //RANDOMLY SELECT ONE OF OUR 4 PATHS (4 DIFFERENT MONSTERS)
   firstPath=GetRandomNum(numOfPaths, 1);
-  
-  //Print instructions for 1st Path
-  PrintPath(firstPath);
+ 
 
-  GetUserPathChoise(&userPathChoise);
+  
 
 
   //create a function that passes in firstPath and userPathChoise and then gives

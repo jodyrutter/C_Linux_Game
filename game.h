@@ -14,7 +14,8 @@ typedef struct enemy_struct{
 int PopulateEnemies(enemy enemies[], int max_size);
 void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamage);
 void GetUserPathChoise(int *pathChoise);
+void PrintEnemyPrompts(int enemyNum, enemy enemies[]);
 int SetDifficulty(int userDif);
 int GetRandomNum(int numUpTo, int startAtNum);
-void PrintPath(int firstPath);
+void PrintPaths(int monster1, int monster2, int monster3, enemy enemies[], int numEnemies);
 #endif
