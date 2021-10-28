@@ -124,9 +124,13 @@ int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {
 	 * health restore is a full health restoring potion if health is below base max of 100
 	*/
 	printf("Welcome to the shop traveller, see my wares below or enter q to exit!\n");
-	char prompt = getchar();
+	char prompt = "";
 
-	while(prompt != 'q') {
+	while(prompt != 'q' && *gold >= 10) {
+	    //printf("\e[1;1H\e[2J");
+	    printf("You have %d gold\n", *gold);
+	    printf("You have %d potions\n", *potions);
+	    printf("You have %d lives\n", *lives);
 	    if(*sword==0){
 	        printf("A. Sword(+10 dmg)\n");
 		    printf("Gold cost: 10\n");
@@ -144,29 +148,28 @@ int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {
 		printf("Gold cost: 20\n");
 		printf("C. Life Potion(restores health)\n");
 		printf("Gold cost: 30\n");
+		scanf(" %c", &prompt);
 		if (prompt == 'A' || prompt == 'a') {
 			if (*sword != 1 && *gold >= 10) {
 				printf("You have purchased the sword\n");
 				*sword = 1;
 				*gold-=10;
-			    printf("%d is your remaining gold\n", *gold);
 			}
 			else if(*gold >=10){
 			    printf("You have purchased the lootbox\n");
 			    int itemR = GetRandomNum(4, 0);
 			    if(itemR == 0){
 			        printf("You received a potion from the lootbox!\n");
-			        *potions++;
+			        *potions+=1;
 			    }
 			    else if(itemR == 1){
 			        printf("You received an extra life from the lootbox!\n");
-			        *lives++;
+			        *lives+=1;
 			    }
 			    else{
 			        printf("Guess you weren't that lucky! You received nothing from the lootbox! ;(\n");
 			    }
 			    *gold-=10;
-			    printf("%d is your remaining gold\n", *gold);
 			}
 			else {
 				printf("You do not have enough gold!\n");
@@ -176,14 +179,12 @@ int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {
 		        if(*gold >=20 && *armor !=1){
 				    printf("You have purchased armor\n");
 				    *gold-=20;
-				    printf("%d is your remaining gold\n", *gold);
 				    *armor = 1;
 		        }
 		        else if(*gold >= 20){
 		            printf("You have purchased an extra life\n");
-		            *lives++;
+		            *lives+=1;
 		            *gold-=20;
-				    printf("%d is your remaining gold\n", *gold);
 		        }
 		        else{
 		            printf("You do not have enough gold!\n");
@@ -192,17 +193,21 @@ int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {
 		else if (prompt == 'C' || prompt == 'c') {
 		    if(*gold >= 30){
 			    printf("You have purchased the potion and your health is fully restored\n");
-			    *potions++;
+			    *potions+=1;
 			    *gold-=30;
-			    printf("%d is your remaining gold\n", *gold);
 		    }
 		    else{
 		        printf("You do not have enough gold!\n");
 		    }
 		}
-		printf("Enter 'q' to quit.\n");
+		if(*gold < 10){
+	        printf("You are too broke to buy anything. Come back when you have more money.\n");
+	        printf("You left with %d gold.\n", *gold);
+	    }
+	    else{
+	        printf("Enter 'q' to quit.\n");
+	    }
 		printf("\n");
-		prompt = getchar();
 	}
 	return *gold;
 }

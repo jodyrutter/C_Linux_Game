@@ -33,7 +33,7 @@ int main(void) {
   // int fourthPath;
   int numOfPaths=4;
   int userPathChoise;
-  int usrGold = 500;
+  int usrGold = 5;
   int level = 0;
   int usrSword, usrArmor = 0;
   int userPathChoice;
