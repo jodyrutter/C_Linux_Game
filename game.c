@@ -135,7 +135,9 @@ int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {
 	 * the armoring is a health buff item that can be purchased multiples times to make HP over 100
 	 * health restore is a full health restoring potion if health is below base max of 100
 	*/
-	printf("Welcome to the shop traveller, see my wares below or enter q to exit!\n");
+	if(*gold >= 10){
+	    printf("Welcome to the shop traveller, see my wares below or enter q to exit!\n");
+	}
 	char prompt = "";
 
 	while(prompt != 'q' && *gold >= 10) {
