@@ -122,7 +122,7 @@ void RandomGold(int *gold) {
 	*/
 	int goldInc = GetRandomNum(50, 10);
 	*gold += goldInc;
-	printf("You search the monsters corpse and find %d pieces of gold!\n", goldInc);
+	printf("You search the monster's corpse and find %d pieces of gold!\n", goldInc);
 
 
 
@@ -137,7 +137,7 @@ int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {
 	 * health restore is a full health restoring potion if health is below base max of 100
 	*/
 	if(*gold >= 10){
-	    printf("Welcome to the shop traveller, see my wares below or enter q to exit!\n");
+	    printf("Welcome to the shop, traveller, see my wares below or enter q to exit!\n");
 	}
 	char prompt = ' ';
 
