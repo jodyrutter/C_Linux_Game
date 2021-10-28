@@ -456,7 +456,7 @@ void CalculateDamageToPlayer(int *playerHealthUpdate, int difficulty, enemy enem
 void AskForHealthPotion(int * playerHealth,int * potions){
    if (*playerHealth<100 && *potions>0){
           int answer;
-          printf("Would you like to use a health potion?");
+          printf("Your health is getting low! Would you like to use a health potion?");
           PrintUserDigitOptions(1, 2);
           GetValidateUserInputDigit(&answer, 1, 2);
           if (answer==1){
