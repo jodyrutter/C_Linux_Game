@@ -115,22 +115,6 @@ int main(void) {
       }
 
       CalculateDamageToPlayer(&playerHealth, difficulty, enemies[monsterChoice]);
-      if (playerHealth<=0){
-          printf("You have lost all your health\n");
-          lives --;
-          if (lives>0){
-            printf("Available lives: %d", lives);
-            break;
-          }
-          else{
-            printf("---------------------------\n");
-            printf("---------------------------\n");
-            printf("---------GAME OVER---------\n");
-            printf("---------------------------\n");
-            printf("---------------------------\n");
-            return 0;
-          }
-
       playerLife=CheckIfPlayerIsDead(playerHealth, &lives);
       
       //if lives>0 break out of the while loop
@@ -143,7 +127,7 @@ int main(void) {
       }
     printf("\n\n\n\n");
   }
-  }
+  
 
 
 
