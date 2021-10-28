@@ -138,7 +138,7 @@ int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {
 	if(*gold >= 10){
 	    printf("Welcome to the shop traveller, see my wares below or enter q to exit!\n");
 	}
-	char prompt = "";
+	char prompt = '';
 
 	while(prompt != 'q' && *gold >= 10) {
 	    //printf("\e[1;1H\e[2J");
