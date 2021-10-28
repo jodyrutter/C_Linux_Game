@@ -166,11 +166,11 @@ int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {
 			    int itemR = GetRandomNum(4, 0);
 			    if(itemR == 0){
 			        printf("You received a potion from the lootbox!\n");
-			        *potions++;
+			        *potions=*potions+1;
 			    }
 			    else if(itemR == 1){
 			        printf("You received an extra life from the lootbox!\n");
-			        *lives++;
+			        *lives=*lives+1;
 			    }
 			    else{
 			        printf("Guess you weren't that lucky! You received nothing from the lootbox! ;(\n");
@@ -191,7 +191,7 @@ int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {
 		        }
 		        else if(*gold >= 20){
 		            printf("You have purchased an extra life\n");
-		            *lives++;
+		            *lives=*lives + 1;
 		            *gold-=20;
 				    printf("%d is your remaining gold\n", *gold);
 		        }
@@ -202,7 +202,7 @@ int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {
 		else if (prompt == 'C' || prompt == 'c') {
 		    if(*gold >= 30){
 			    printf("You have purchased the potion and your health is fully restored\n");
-			    *potions++;
+			    *potions=*potions+1;
 			    *gold-=30;
 			    printf("%d is your remaining gold\n", *gold);
 		    }
