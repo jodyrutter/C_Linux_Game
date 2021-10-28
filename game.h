@@ -28,4 +28,5 @@ void PrintDamageMonsterTook(int *numDamageType);
 void CalculateDamageToMonster(int *monsterHealthUpdate, int userElement, int sword);
 void CalculateDamageToPlayer(int *playerHealthUpdate, int difficulty);
 int DamageToMonsters(int damageType, enemy enemyType, int sword);
+void RandomGold(int *gold);
 #endif

@@ -115,14 +115,16 @@ void PrintPath(int monster1, int monster2, int monster3, enemy enemies[], int nu
   printf("---------------------------------\n");
 }
 
-int RandomGold(int gold) {
+void RandomGold(int *gold) {
 	/*
 	 * Simple gold generator, invoke on monster death or mon health <= 0
 	 * gives gold min 10 max 25 and adds to gold purse.
 	*/
-	gold += GetRandomNum(25, 10);
+	int goldInc = GetRandomNum(50, 10);
+	*gold += goldInc;
+	printf("You search the monsters corpse and find %d of gold!\n", goldInc);
 
-	return gold;
+
 }
 
 int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {

@@ -94,8 +94,10 @@ int main(void) {
       CalculateDamageToMonster(&monsterHealth, userElementChoise, sword);
       if (monsterHealth<=0){
         printf("Congrats you have destroyed the monster\n");
+        RandomGold(&usrGold);
         printf("You have advanced a level\n");
         fightWon=1;
+
         break;
       }
       CalculateDamageToPlayer(&playerHealth, difficulty);
