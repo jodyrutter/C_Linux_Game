@@ -89,6 +89,9 @@ int main(void) {
     playerHealth=100;
     while(1){
       printf("\nMonster health is: %d\n", monsterHealth);
+      if (armor==1){
+        playerHealth+=10;
+      }
       printf("Player health is: %d\n", playerHealth);
       printf("Player available lives: %d\n\n\n", lives);
 
