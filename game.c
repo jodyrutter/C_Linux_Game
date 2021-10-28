@@ -238,33 +238,45 @@ int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 
 	if (damageType == 1 || damageType == 2 || damageType == 3 || damageType == 4) {
 	if (damageType == 1) {
-		if (strcmp(enemyType.element, "Water")) {
+		if (strcmp(enemyType.element, "Air\n") == 0) {
 			monsterDamage = 40;
+		}
+		else if (strcmp(enemyType.element, "Water\n") == 0) {
+			monsterDamage = 10;
 		}
 		else {
 			monsterDamage = 20;
 		}
 	}
 	else if (damageType == 2) {
-			if (strcmp(enemyType.element, "Fire")) {
+			if (strcmp(enemyType.element, "Fire\n") == 0) {
 				monsterDamage = 40;
 			}
+			else if (strcmp(enemyType.element, "Earth\n") == 0) {
+			    monsterDamage = 10;
+		    }
 			else {
 				monsterDamage = 20;
 			}
 		}
 	else if (damageType == 3) {
-			if (strcmp(enemyType.element, "Air")) {
+			if (strcmp(enemyType.element, "Water\n") == 0) {
 				monsterDamage = 40;
 			}
+			else if (strcmp(enemyType.element, "Air\n") == 0) {
+			    monsterDamage = 10;
+		    }
 			else {
 				monsterDamage = 20;
 			}
 		}
 	else {
-			if (strcmp(enemyType.element, "Earth")) {
+			if (strcmp(enemyType.element, "Earth\n") == 0) {
 				monsterDamage = 40;
 			}
+			else if (strcmp(enemyType.element, "Fire\n") == 0) {
+			    monsterDamage = 10;
+		    }
 			else {
 				monsterDamage = 20;
 			}
@@ -415,10 +427,10 @@ void GetPowerType(char *type[], int damage){
 }
 
 //Calculate Damage done to the monster
-void CalculateDamageToMonster(int *monsterHealthUpdate, int userElement, int sword){
+void CalculateDamageToMonster(int *monsterHealthUpdate, int userElement, int sword, enemy enemyType){
   int damage;
   damage=10;   // needs to be removed and calculated with the function below
-  //damage=DamageToMonsters(userElement, enemy enemyType, sword);
+  damage=DamageToMonsters(userElement, enemyType, sword);
   char *powerType;
   GetPowerType(&powerType, damage);
   printf(" %s and did ", powerType);

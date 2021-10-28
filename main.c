@@ -26,6 +26,7 @@ int main(void) {
   int monster1;
   int monster2;
   int monster3;
+  int monsterChoice;
   int fightWon = 1; //To comply with old c, 0 means false, 1 means true.
   time_t t;
   srand((unsigned) time(&t)); //unique seed
@@ -63,13 +64,16 @@ int main(void) {
 	  switch (userPathChoise){
 		  case 1:
 			PrintEnemyPrompts(monster1, enemies);
+			monsterChoice = monster1;
 			//Fight function here
 			break;
 		  case 2:
 			PrintEnemyPrompts(monster2, enemies);
+			monsterChoice = monster2;
 			break;
 		  case 3:
 			PrintEnemyPrompts(monster3, enemies);
+			monsterChoice = monster3;
 			break;
 		  default:
 			printf("This is not a valid path\n");
@@ -91,7 +95,7 @@ int main(void) {
 
       //*******************need to pass in CalcDamToMonster the damage type, emenyType, sword, and monsterHealth
       //we need to pass in the enemy Type to get correct damage
-      CalculateDamageToMonster(&monsterHealth, userElementChoise, sword);
+      CalculateDamageToMonster(&monsterHealth, userElementChoise, sword, enemies[monsterChoice]);
       if (monsterHealth<=0){
         printf("Congrats you have destroyed the monster\n");
         RandomGold(&usrGold);
