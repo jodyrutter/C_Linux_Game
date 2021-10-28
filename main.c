@@ -42,10 +42,12 @@ int main(void) {
   int userElementChoise;
   int monsterHealth;
   int playerHealth;
+  int maxLevel=10;
+  int playerLife;
   
   //Get user name, set difficulty, set monster Damage per hit
   GetIntroductionInfo(name, &difficulty, &monsterDamagePerHit);
-  while(lives>0 && level < 10){
+  while(lives>0 && level < maxLevel){
 	  if(fightWon == 1){
 		srand(time(0));
 		monster1 = GetRandomNum(numEnemies, 0);
@@ -64,16 +66,16 @@ int main(void) {
 	  switch (userPathChoise){
 		  case 1:
 			PrintEnemyPrompts(monster1, enemies);
-			monsterChoice = monster1;
+      monsterChoice = monster1;
 			//Fight function here
 			break;
 		  case 2:
 			PrintEnemyPrompts(monster2, enemies);
-			monsterChoice = monster2;
+      monsterChoice = monster2;
 			break;
 		  case 3:
 			PrintEnemyPrompts(monster3, enemies);
-			monsterChoice = monster3;
+      monsterChoice = monster3;
 			break;
 		  default:
 			printf("This is not a valid path\n");
@@ -89,21 +91,26 @@ int main(void) {
       printf("\nMonster health is: %d\n", monsterHealth);
       printf("Player health is: %d\n", playerHealth);
       printf("Player available lives: %d\n\n\n", lives);
-      GetAndPrintUserAttackElementChoice(&userElementChoise);
-      
-      PrintDamageMonsterTook(&userElementChoise);
 
+      //check if user wants to use a health potion if they have one available and their health is less than 100
+      AskForHealthPotion(&playerHealth, &potions);
+
+      //Print attack elements fire, water, earth, air and get userInput choice
+      GetAndPrintUserAttackElementChoice(&userElementChoise);
+            
       //*******************need to pass in CalcDamToMonster the damage type, emenyType, sword, and monsterHealth
       //we need to pass in the enemy Type to get correct damage
       CalculateDamageToMonster(&monsterHealth, userElementChoise, sword, enemies[monsterChoice]);
-      if (monsterHealth<=0){
-        printf("Congrats you have destroyed the monster\n");
-        RandomGold(&usrGold);
-        printf("You have advanced a level\n");
-        fightWon=1;
 
+      int result = 2;
+
+      CheckIfMonsterIsDead(monsterHealth, &result, &usrGold);
+      if (result==1){
+        level++;
+        ShopKeeper(&usrGold, &sword, &potions, &armor, &lives);
         break;
       }
+
       CalculateDamageToPlayer(&playerHealth, difficulty, enemies[monsterChoice]);
       if (playerHealth<=0){
           printf("You have lost all your health\n");
@@ -120,26 +127,20 @@ int main(void) {
             printf("---------------------------\n");
             return 0;
           }
+
+      playerLife=CheckIfPlayerIsDead(playerHealth, &lives);
+      
+      //if lives>0 break out of the while loop
+      if (playerLife==1){
+        break;
       }
-    }
-    //Create function to print player health and lives and monster health
-    //in the function, if user has portions, ask user if they want to use 1
-    //
-
-    //create function in game.c for the following:
+      //if lives=0 GAME OVER
+      else if(playerLife==0){
+        return 0;
+      }
     printf("\n\n\n\n");
-
-
-
-	  if(fightWon == 1){
-		level++;
-	  }
-	  ShopKeeper(&usrGold, &sword, &potions, &armor, &lives);
-
-
   }
-
-
+  }
 
 
 
@@ -162,6 +163,7 @@ int main(void) {
 
 
 
-
+  }
   return 0;
 }
+
