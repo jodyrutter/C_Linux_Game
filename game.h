@@ -26,7 +26,7 @@ void GetUserAttackElementChoice(int* elementChoice);
 void GetAndPrintUserAttackElementChoice(int* elementChoise);
 void PrintDamageMonsterTook(int *numDamageType);
 void CalculateDamageToMonster(int *monsterHealthUpdate, int userElement, int sword, enemy enemytype);
-void CalculateDamageToPlayer(int *playerHealthUpdate, int difficulty);
+void CalculateDamageToPlayer(int *playerHealthUpdate, int difficulty, enemy enemyName);
 int DamageToMonsters(int damageType, enemy enemyType, int sword);
 void RandomGold(int *gold);
 #endif

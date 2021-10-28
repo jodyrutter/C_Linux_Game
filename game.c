@@ -122,7 +122,7 @@ void RandomGold(int *gold) {
 	*/
 	int goldInc = GetRandomNum(50, 10);
 	*gold += goldInc;
-	printf("You search the monsters corpse and find %d of gold!\n", goldInc);
+	printf("You search the monsters corpse and find %d pieces of gold!\n", goldInc);
 
 
 }
@@ -438,8 +438,8 @@ void CalculateDamageToMonster(int *monsterHealthUpdate, int userElement, int swo
   printf("%d damage.", damage);
 }
 
-void CalculateDamageToPlayer(int *playerHealthUpdate, int difficulty){
+void CalculateDamageToPlayer(int *playerHealthUpdate, int difficulty, enemy enemyName){
   int damageTaken=GetMonsterDamage(difficulty);
   *playerHealthUpdate-=damageTaken;
-  printf("The ENTER_MONSTER_TYPE_HERE blasted you and did %d damage!\n", damageTaken);
+  printf("The %sIt blasted you and did %d damage!\n", enemyName.name ,damageTaken);
 }

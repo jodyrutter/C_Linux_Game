@@ -104,7 +104,7 @@ int main(void) {
 
         break;
       }
-      CalculateDamageToPlayer(&playerHealth, difficulty);
+      CalculateDamageToPlayer(&playerHealth, difficulty, enemies[monsterChoice]);
       if (playerHealth<=0){
           printf("You have lost all your health\n");
           lives --;
