@@ -96,10 +96,7 @@ int main(void) {
       printf("Player available lives: %d\n\n\n", lives);
 
       //check if user wants to use a health potion if they have one available and their health is less than 100
-      if (playerHealth < 60) {
-    	  AskForHealthPotion(&playerHealth, &potions);
-	}
-
+      AskForHealthPotion(&playerHealth, &potions);
 
       //Print attack elements fire, water, earth, air and get userInput choice
       GetAndPrintUserAttackElementChoice(&userElementChoise);
