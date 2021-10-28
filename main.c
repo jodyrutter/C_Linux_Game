@@ -58,7 +58,7 @@ int main(void) {
 	      printf("You are at the start of the catacombs.\n");
 	  }
 	  else{
-	      printf("You are %d levels deep into the catacombs.\n", level);
+	      printf("You are %d levels deep into the catacombs. (Total levels: %d)\n", level, maxLevel);
 	  }
 	  //Print instructions for 1st Path
 	  PrintPath(monster1, monster2, monster3, enemies, numEnemies);
