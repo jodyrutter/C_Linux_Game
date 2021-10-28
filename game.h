@@ -24,9 +24,14 @@ void PrintAttackElements();
 void GetUserAttackElementChoice(int* elementChoice);
 
 void GetAndPrintUserAttackElementChoice(int* elementChoise);
-void PrintDamageMonsterTook(int *numDamageType);
-void CalculateDamageToMonster(int *monsterHealthUpdate, int userElement, int sword, enemy enemytype);
+// void PrintDamageMonsterTook(int *numDamageType);
+void CalculateDamageToMonster(int *monsterHealthUpdate, int userElement, int sword, enemy enemyType);
 void CalculateDamageToPlayer(int *playerHealthUpdate, int difficulty);
 int DamageToMonsters(int damageType, enemy enemyType, int sword);
 void RandomGold(int *gold);
+void PrintUserDigitOptions(int min, int max);
+void GetValidateUserInputDigit(int* myInput, int lowerRange, int higherRange);
+void AskForHealthPotion(int * playerHealth, int * potions);
+void CheckIfMonsterIsDead(int monsterHealth, int * fightWon, int *userGold);
+int CheckIfPlayerIsDead(int playerHealth, int *lives);
 #endif

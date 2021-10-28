@@ -122,7 +122,7 @@ void RandomGold(int *gold) {
 	*/
 	int goldInc = GetRandomNum(50, 10);
 	*gold += goldInc;
-	printf("You search the monsters corpse and find %d of gold!\n", goldInc);
+	printf("You searched the monsters corpse and found %d of gold!\n", goldInc);
 
 
 }
@@ -144,7 +144,7 @@ int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {
 	    //printf("\e[1;1H\e[2J");
 	    printf("You have %d gold\n", *gold);
 	    printf("You have %d potions\n", *potions);
-	    printf("You have %d lives\n", *lives);
+	    printf("You have %d lives\n\n", *lives);
 	    if(*sword==0){
 	        printf("A. Sword(+10 dmg)\n");
 		    printf("Gold cost: 10\n");
@@ -163,6 +163,7 @@ int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {
 		printf("C. Life Potion(restores health)\n");
 		printf("Gold cost: 30\n");
 		scanf(" %c", &prompt);
+    printf("\n");
 		if (prompt == 'A' || prompt == 'a') {
 			if (*sword != 1 && *gold >= 10) {
 				printf("You have purchased the sword\n");
@@ -219,10 +220,15 @@ int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {
 		}
 		if(*gold < 10){
 	        printf("You are too broke to buy anything. Come back when you have more money.\n");
-	        printf("You left with %d gold.\n", *gold);
+	        printf("You are left with %d gold.\n", *gold);
+          printf("*** HINT: you can get more gold by killing monsters ***\n");
+          printf("=======================================\n");
+          printf("=======================================\n");
+          printf("=======================================\n\n");
 	    }
 	    else{
-	        printf("Enter 'q' to quit.\n");
+          printf("=======================================");
+	        printf("\n\nWould you like to make another purchase? \nEnter 'q' to quit.\n");
 	    }
 		printf("\n");
 	}
@@ -235,7 +241,7 @@ int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 	 * currently set to be static can be converted to dynamic depending on difficulty etc...
 	*/
 	int monsterDamage;
-
+  
 	if (damageType == 1 || damageType == 2 || damageType == 3 || damageType == 4) {
 	if (damageType == 1) {
 		if (strcmp(enemyType.element, "Air\n") == 0) {
@@ -392,7 +398,7 @@ void GetValidateUserInputDigit(int* myInput, int lowerRange, int higherRange){
 }
 
 
-void PrintDamageMonsterTook(int *numDamageType){
+void GetDamageTypeMonsterTook(int *numDamageType){
   char *damageType[10];
   if (*numDamageType==1){
       *damageType="Fire";
@@ -428,18 +434,70 @@ void GetPowerType(char *type[], int damage){
 
 //Calculate Damage done to the monster
 void CalculateDamageToMonster(int *monsterHealthUpdate, int userElement, int sword, enemy enemyType){
+  GetDamageTypeMonsterTook(&userElement);
   int damage;
-  damage=10;   // needs to be removed and calculated with the function below
+  // damage=20;   // needs to be removed and calculated with the function below
   damage=DamageToMonsters(userElement, enemyType, sword);
   char *powerType;
   GetPowerType(&powerType, damage);
   printf(" %s and did ", powerType);
   *monsterHealthUpdate-=damage;
-  printf("%d damage.", damage);
+  printf("%d damage.\n", damage);
 }
 
 void CalculateDamageToPlayer(int *playerHealthUpdate, int difficulty){
   int damageTaken=GetMonsterDamage(difficulty);
   *playerHealthUpdate-=damageTaken;
   printf("The ENTER_MONSTER_TYPE_HERE blasted you and did %d damage!\n", damageTaken);
+}
+
+//check if user wants to use a health potion if they have one available and their health is less than 100
+void AskForHealthPotion(int * playerHealth,int * potions){
+   if (*playerHealth<100 && *potions>0){
+          int answer;
+          printf("Would you like to use a health potion?");
+          PrintUserDigitOptions(1, 2);
+          GetValidateUserInputDigit(&answer, 1, 2);
+          if (answer==1){
+            printf("Your health regenerated from %d to 100",* playerHealth);
+            *potions=*potions-1;
+          }
+      }
+}
+
+
+void CheckIfMonsterIsDead(int monsterHealth, int * fightWon, int *userGold){
+        if (monsterHealth<=0){
+          printf("\n=======================================\n");
+          printf("=======================================\n");
+          printf("=======================================\n");
+          printf("Congrats you have destroyed the monster and advanced a level\n");
+          RandomGold(userGold);
+          *fightWon=1;
+          printf("\n\n\n");
+
+        }
+}
+
+
+int CheckIfPlayerIsDead(int playerHealth, int *lives){
+  int result=2; //I just don't want it to be 0 or 1
+  if (playerHealth<=0){
+          printf("You have lost all your health\n");
+          *lives=*lives-1;
+          if (*lives>0){
+            printf("Available lives: %d\n\n\n", *lives);
+            result=1; //break
+          }
+          else{
+            printf("\n\n\n");
+            printf("-----------------------------------\n");
+            printf("-----------------------------------\n");
+            printf("--------- G A M E   O V E R ---------\n");
+            printf("-----------------------------------\n");
+            printf("-----------------------------------\n");
+            result=0; //return 0
+          }
+      }
+    return result;
 }
