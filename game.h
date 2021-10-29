@@ -31,6 +31,7 @@ void CalculateDamageToPlayer(int *playerHealthUpdate, int difficulty, enemy enem
 void CalculateDamageToMonster(int *monsterHealthUpdate, int userElement, int sword, enemy enemyType);
 int DamageToMonsters(int damageType, enemy enemyType, int sword);
 void RandomGold(int *gold);
+void BossFight(char name[], int *lives, int *potions, int *sword, int *health, int difficulty, int *armor, int *gold);
 void PrintUserDigitOptions(int min, int max);
 void GetValidateUserInputDigit(int* myInput, int lowerRange, int higherRange);
 void AskForHealthPotion(int * playerHealth, int * potions);

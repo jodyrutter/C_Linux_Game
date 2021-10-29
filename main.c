@@ -127,7 +127,7 @@ int main(void) {
       }
     printf("\n\n\n\n");
   }
-  
+  BossFight(name, &lives, &potions, &sword, &playerHealth, difficulty, &armor, &usrGold);
 
 
 
