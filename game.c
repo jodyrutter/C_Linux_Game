@@ -295,19 +295,6 @@ int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 	return monsterDamage;
   }
 
-void GameOver(int lives, int playerHealth) { //Function to determine Game Over
-    while (lives > 0) {
-        if (playerHealth <= 0) {
-            lives = lives - 1; //Decrement lives from game
-            if (lives <= 0) {
-                printf("Game Over");
-            }
-        }
-     }
-}
-
-
-
 
 /**
  * Function to populate an array of enemies with data from file.
@@ -456,7 +443,7 @@ void CalculateDamageToPlayer(int *playerHealthUpdate, int difficulty, enemy enem
 void AskForHealthPotion(int * playerHealth,int * potions){
    if (*playerHealth<100 && *potions>0){
           int answer;
-          printf("Your health is getting low! Would you like to use a health potion?");
+          printf("Would you like to use a health potion?");
           PrintUserDigitOptions(1, 2);
           GetValidateUserInputDigit(&answer, 1, 2);
           if (answer==1){
