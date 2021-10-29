@@ -622,7 +622,8 @@ void BossFight(char name[], int *lives, int *potions, int *sword, int *health, i
         int dmgB;
         int dmgU;
         char potChoice[10];
-        printf("Health: %d, Lives: %d\n", *health, *lives);
+        printf("\nWitch health is: %d\n", witchHealth);
+        printf("Player health is: %d \nPlayer available lives: %d\n\n", *health, *lives);
         PrintAttackElements(minNum, elementNum);
         element = GetRandomNum(elementNum, 0); //The witch's element changes.
         GetValidateUserInputDigit(&attk, minNum, elementNum);
