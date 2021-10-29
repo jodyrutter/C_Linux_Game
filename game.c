@@ -508,9 +508,9 @@ void CalculateDamageToPlayer(int *playerHealthUpdate, int difficulty, enemy enem
 
 //check if user wants to use a health potion if they have one available and their health is less than 100
 void AskForHealthPotion(int * playerHealth,int * potions){
-   if (*playerHealth<100 && *potions>0){
+   if (*playerHealth<60 && *potions>0){
           int answer;
-          printf("Would you like to use a health potion?");
+          printf("Your health is low! Would you like to use a health potion? 1 for yes, 2 for no");
           PrintUserDigitOptions(1, 2);
           GetValidateUserInputDigit(&answer, 1, 2);
           if (answer==1){
