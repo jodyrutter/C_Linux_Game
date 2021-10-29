@@ -42,7 +42,7 @@ int main(void) {
   int userElementChoise;
   int monsterHealth;
   int playerHealth;
-  int maxLevel=10;
+  int maxLevel=4;
   int playerLife;
   
   //Get user name, set difficulty, set monster Damage per hit
@@ -87,11 +87,14 @@ int main(void) {
 
     monsterHealth=100;
     playerHealth=100;
+    if (armor==1){
+            playerHealth = 110;
+          }
     while(1){
       printf("\nMonster health is: %d\n", monsterHealth);
-      if (armor==1){
-        playerHealth+=10;
-      }
+      //if (armor==1){
+      //  playerHealth+=10;
+      //}
       printf("Player health is: %d\n", playerHealth);
       printf("Player available lives: %d\n\n\n", lives);
 
@@ -110,12 +113,12 @@ int main(void) {
       CheckIfMonsterIsDead(monsterHealth, &result, &usrGold);
       if (result==1){
         level++;
-        ShopKeeper(&usrGold, &sword, &potions, &armor, &lives);
+        ShopKeeper(&usrGold, &sword, &potions, &armor, &lives, &playerHealth);
         break;
       }
 
       CalculateDamageToPlayer(&playerHealth, difficulty, enemies[monsterChoice]);
-      playerLife=CheckIfPlayerIsDead(playerHealth, &lives);
+      playerLife=CheckIfPlayerIsDead(playerHealth, &lives, &armor);
       
       //if lives>0 break out of the while loop
       if (playerLife==1){

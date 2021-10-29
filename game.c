@@ -128,7 +128,7 @@ void RandomGold(int *gold) {
 
 }
 
-int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {
+int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives, int *playerHealth) {
 	/*
 	 * Takes input fold from the user and sword boolean int, if purchase is made
 	 * gold is automatically subtracted
@@ -199,6 +199,7 @@ int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives) {
 				    printf("You have purchased armor\n");
 				    *gold-=20;
 				    *armor = 1;
+				    //*playerHealth+=10;
 		        }
 		        else if(*gold >= 20){
 		            printf("You have purchased an extra life\n");
@@ -535,13 +536,16 @@ void CheckIfMonsterIsDead(int monsterHealth, int * fightWon, int *userGold){
 }
 
 
-int CheckIfPlayerIsDead(int playerHealth, int *lives){
+int CheckIfPlayerIsDead(int playerHealth, int *lives, int *armor){
   int result=2; //I just don't want it to be 0 or 1
   if (playerHealth<=0){
           printf("You have lost all your health\n");
           *lives=*lives-1;
           if (*lives>0){
             printf("Available lives: %d\n\n\n", *lives);
+            //if (*armor==1){
+                   // playerHealth+=10;
+                 // }
             result=1; //break
           }
           else{
@@ -640,7 +644,7 @@ void BossFight(char name[], int *lives, int *potions, int *sword, int *health, i
             witchHealth = 200;
             *lives -= 1;
             if(*lives > 0){
-                ShopKeeper(gold, sword, potions, armor, lives);
+            	int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives, int *playerHealth);
                 printf("You respawn with full health.\n");
                 printf("The witch also regenerates her health!\n");
             }

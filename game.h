@@ -18,7 +18,7 @@ void PrintEnemyPrompts(int enemyNum, enemy enemies[]);
 int SetDifficulty(int userDif);
 int GetRandomNum(int numUpTo, int startAtNum);
 void PrintPath(int monster1, int monster2, int monster3, enemy enemies[], int numEnemies);
-int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives);
+int ShopKeeper(int *gold, int *sword, int *potions, int *armor, int *lives, int *playerHealth);
 void PrintAttackElements();
 
 void GetUserAttackElementChoice(int* elementChoice);
@@ -36,5 +36,5 @@ void PrintUserDigitOptions(int min, int max);
 void GetValidateUserInputDigit(int* myInput, int lowerRange, int higherRange);
 void AskForHealthPotion(int * playerHealth, int * potions);
 void CheckIfMonsterIsDead(int monsterHealth, int * fightWon, int *userGold);
-int CheckIfPlayerIsDead(int playerHealth, int *lives);
+int CheckIfPlayerIsDead(int playerHealth, int *lives, int *armor);
 #endif
