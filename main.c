@@ -138,7 +138,7 @@ int main(void) {
 
 
   }
-
+  BossFight(name, &lives, &potions, &sword, &playerHealth, difficulty, &armor, &usrGold);
 
 
 

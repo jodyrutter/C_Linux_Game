@@ -287,7 +287,64 @@ int DamageToMonsters(int damageType, enemy enemyType, int sword) {
 		}
 	return monsterDamage;
   }
+int DamageToBoss(int damageType, int enemyDamageType, int sword) {
+	/*
+	 * Simple damage function that looks like struct enemy element and then assigns damage accordingly
+	 * currently set to be static can be converted to dynamic depending on difficulty etc...
+	*/
+	int monsterDamage;
 
+	if (damageType == 1 || damageType == 2 || damageType == 3 || damageType == 4) {
+	if (damageType == 1) {
+		if (enemyDamageType == 4) {
+			monsterDamage = 40;
+		}
+		else if (enemyDamageType == 2) {
+			monsterDamage = 10;
+		}
+		else {
+			monsterDamage = 20;
+		}
+	}
+	else if (damageType == 2) {
+			if (enemyDamageType == 1) {
+				monsterDamage = 40;
+			}
+			else if (enemyDamageType == 3) {
+			    monsterDamage = 10;
+		    }
+			else {
+				monsterDamage = 20;
+			}
+		}
+	else if (damageType == 3) {
+			if (enemyDamageType == 2) {
+				monsterDamage = 40;
+			}
+			else if (enemyDamageType == 4) {
+			    monsterDamage = 10;
+		    }
+			else {
+				monsterDamage = 20;
+			}
+		}
+	else {
+			if (enemyDamageType == 3) {
+				monsterDamage = 40;
+			}
+			else if (enemyDamageType == 1) {
+			    monsterDamage = 10;
+		    }
+			else {
+				monsterDamage = 20;
+			}
+		}
+	}
+	if (sword == 1) {
+			monsterDamage += 10;
+		}
+	return monsterDamage;
+  }
 void GameOver(int lives, int playerHealth) { //Function to determine Game Over
     while (lives > 0) {
         if (playerHealth <= 0) {
@@ -442,4 +499,129 @@ void CalculateDamageToPlayer(int *playerHealthUpdate, int difficulty){
   int damageTaken=GetMonsterDamage(difficulty);
   *playerHealthUpdate-=damageTaken;
   printf("The ENTER_MONSTER_TYPE_HERE blasted you and did %d damage!\n", damageTaken);
+}
+
+void BossFight(char name[], int *lives, int *potions, int *sword, int *health, int difficulty, int *armor, int *gold){
+    printf("The tunnel you're travelling down ends into a longer tunnel!\n");
+    sleep(2);
+    printf("You take the longer tunnel towards a light, which leads into a huge cavern!\n");
+    sleep(2);
+    printf("The cavern is huge, but in the back looks like the way out!\n");
+    sleep(2);
+    printf("You start running for the light, ready to feel the cool breeze on your back.\n");
+    sleep(2);
+    printf("Then, you smack into something. It is your mother.\n");
+    sleep(2);
+    printf("Mom: \"Hello dear. What are you doing in this cave?\"\n");
+    sleep(2);
+    printf("%s: I thought I would find treasure here, but I was repeatedly attacked.\n", name);
+    sleep(2);
+    printf("Mom: \"You know exploring a cave like this is dangerous.\"\n");
+    sleep(2);
+    printf("%s: I know mom.\n", name);
+    sleep(2);
+    printf("Your mother gets closer. She hugs you tight! Something doesn't feel right.\n");
+    sleep(2);
+    printf("This woman doesn't feel like your mother. You look up at her face and it is not the same.\n");
+    sleep(2);
+    printf("%s: Woah there! You're not my mother.\n", name);
+    sleep(2);
+    printf("Witch: \"NOOOoooo, you've seen through my disguise! You must be a true sorcerer!\"\n");
+    sleep(2);
+    printf("Witch: \"Regardless, I won't let you leave here alive! Prepare to die!\"\n");
+    printf("                                      __,,,\n");
+    printf("                                 _.--'    /\n");
+    printf("                              .-'        /\n");
+    printf("                            .'          |\n");
+    printf("                          .'           /\n");
+    printf("                         /_____________|\n");
+    printf("                       /`~~~~~~~~~~~~~~/\n");
+    printf("                     /`               /\n");
+    printf("      ____,....----'/_________________|---....,___\n");
+    printf(",--""`             `~~~~~~~~~~~~~~~~~~`           `""--,\n");
+    printf("`'----------------.----,------------------------,-------'`\n");
+    printf("               _,'.--. \\                         \\\n");
+    printf("             .'  (o   ) \\                        |\n");
+    printf("            c   , '--'  |                        /\n");
+    printf("           /    )'-.    \\                       /\n");
+    printf("          |  .-;        \\                       |\n");
+    printf("          \\_/  |___,'    |                    .-'\n");
+    printf("         .---.___|_      |                   /\n");
+    printf("        (          `     |               .--'\n");
+    printf("         '.         __,-'\\             .'\n");
+    printf("           `'-----'`      \\        __.'\n");
+    printf("                           `-..--'`\n");
+    if(*armor == 1){
+        *health = 110;
+    }
+    else{
+        *health = 100;
+    }
+    int witchHealth = 200;
+    int element;
+    int elementNum=4;
+    int minNum = 1;
+    while(witchHealth > 0 && *lives > 0){
+        int attk;
+        int dmgB;
+        int dmgU;
+        char potChoice[10];
+        printf("Health: %d, Lives: %d\n", *health, *lives);
+        PrintAttackElements(minNum, elementNum);
+        element = GetRandomNum(elementNum, 0); //The witch's element changes.
+        GetValidateUserInputDigit(&attk, minNum, elementNum);
+        dmgU = DamageToBoss(attk, element, *sword);
+        printf("Your attack did %d damage against the witch, which changes elements.\n", dmgU);
+        witchHealth -= dmgU;
+        if(witchHealth > 0){
+            printf("The witch's health is %d\n", witchHealth);
+            dmgB = (GetMonsterDamage(difficulty)*GetRandomNum(4, 1)/2);
+            printf("The witch did %d damage!\n", dmgB);
+            *health -= dmgB;
+        }
+        if(*health <= 0){
+            printf("Witch: \"I GOT YOU!!! BAHAHAHAHAAHAHAHAHA!!!!!\"\n");
+            witchHealth = 200;
+            *lives -= 1;
+            if(*lives > 0){
+                ShopKeeper(gold, sword, potions, armor, lives);
+                printf("You respawn with full health.\n");
+                printf("The witch also regenerates her health!\n");
+            }
+            else{
+                printf("Game Over");
+            }
+            if(*armor == 1){
+                *health = 110;
+            }
+            else{
+                *health = 100;
+            }
+        }
+        else if(*potions > 0 && witchHealth > 0){
+            printf("You have %d potions and have %d health. Would you like to use one (y\\n)?\n", *potions, *health);
+            scanf("%s", potChoice);
+            if(strcmp(potChoice, "y")==0){
+                *potions=*potions-1;
+                if(*armor == 1){
+                    *health = 110;
+                }
+                else{
+                    *health = 100;
+                }
+            }
+        }
+        else{
+            //The game continues
+        }
+        
+        
+    }
+    if(*lives>0){
+        printf("Witch: \"NoO0oO0oOoo!!!!!\"\n");
+        sleep(2);
+        printf("%s: I vanquish you from these sacred catacombs!\n", name);
+        sleep(2);
+        printf("The witch melts into a treasure chest full of gold! You did it, you got the treasure!\n");
+    }
 }

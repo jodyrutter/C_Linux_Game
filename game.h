@@ -29,4 +29,5 @@ void CalculateDamageToMonster(int *monsterHealthUpdate, int userElement, int swo
 void CalculateDamageToPlayer(int *playerHealthUpdate, int difficulty);
 int DamageToMonsters(int damageType, enemy enemyType, int sword);
 void RandomGold(int *gold);
+void BossFight(char name[], int *lives, int *potions, int *sword, int *health, int difficulty, int *armor, int *gold);
 #endif
