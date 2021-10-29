@@ -16,8 +16,8 @@ void PrintDamageMonsterTook(int *numDamageType);
 
 void GetIntroductionInfo(char userName[], int *userDifficulty, int *monsterDamage){
   printf("Hello adventurer, what is your name?\n");
-  // scanf("%s", userName);
-  strcpy(userName, "Elenie"); //for testing only
+  scanf("%s", userName);
+  // strcpy(userName, "Elenie"); //for testing only
   printf("\nNice to meet you %s.\nYou have been called here to explore these vast catacombs in search of great treasure and riches.\n\n", userName);
   printf("What difficulty would you like?\n");
   printf("--------------------------\n");
@@ -562,32 +562,33 @@ int CheckIfPlayerIsDead(int playerHealth, int *lives, int *armor){
 }
 
 void BossFight(char name[], int *lives, int *potions, int *sword, int *health, int difficulty, int *armor, int *gold){
+    int countdownTimer=2;
     printf("The tunnel you're travelling down ends into a longer tunnel!\n");
-    sleep(2);
+    sleep(countdownTimer);
     printf("You take the longer tunnel towards a light, which leads into a huge cavern!\n");
-    sleep(2);
+    sleep(countdownTimer);
     printf("The cavern is huge, but in the back looks like the way out!\n");
-    sleep(2);
+    sleep(countdownTimer);
     printf("You start running for the light, ready to feel the cool breeze on your back.\n");
-    sleep(2);
+    sleep(countdownTimer);
     printf("Then, you smack into something. It is your mother.\n");
-    sleep(2);
+    sleep(countdownTimer);
     printf("Mom: \"Hello dear. What are you doing in this cave?\"\n");
-    sleep(2);
+    sleep(countdownTimer);
     printf("%s: I thought I would find treasure here, but I was repeatedly attacked.\n", name);
-    sleep(2);
+    sleep(countdownTimer);
     printf("Mom: \"You know exploring a cave like this is dangerous.\"\n");
-    sleep(2);
+    sleep(countdownTimer);
     printf("%s: I know mom.\n", name);
-    sleep(2);
+    sleep(countdownTimer);
     printf("Your mother gets closer. She hugs you tight! Something doesn't feel right.\n");
-    sleep(2);
+    sleep(countdownTimer);
     printf("This woman doesn't feel like your mother. You look up at her face and it is not the same.\n");
-    sleep(2);
+    sleep(countdownTimer);
     printf("%s: Woah there! You're not my mother.\n", name);
-    sleep(2);
+    sleep(countdownTimer);
     printf("Witch: \"NOOOoooo, you've seen through my disguise! You must be a true sorcerer!\"\n");
-    sleep(2);
+    sleep(countdownTimer);
     printf("Witch: \"Regardless, I won't let you leave here alive! Prepare to die!\"\n");
     printf("                                      __,,,\n");
     printf("                                 _.--'    /\n");
@@ -626,7 +627,8 @@ void BossFight(char name[], int *lives, int *potions, int *sword, int *health, i
         int dmgB;
         int dmgU;
         char potChoice[10];
-        printf("Health: %d, Lives: %d\n", *health, *lives);
+        printf("\nWitch health is: %d\n", witchHealth);
+        printf("Player health is: %d \nPlayer available lives: %d\n\n", *health, *lives);
         PrintAttackElements(minNum, elementNum);
         element = GetRandomNum(elementNum, 0); //The witch's element changes.
         GetValidateUserInputDigit(&attk, minNum, elementNum);
